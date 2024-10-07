@@ -11,6 +11,7 @@
     <property name="format_sql">true</property>
     <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
     <mapping class="entity.Player"/>
+    <mapping class="entity.Match"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
   </session-factory>
