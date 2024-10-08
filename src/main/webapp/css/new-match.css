@@ -1,0 +1,92 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f8;
+    margin: 0;
+}
+
+.navbar {
+    width: 100%; /* Полная ширина */
+    background-color: #3b9890; /* Цвет фона панели */
+    padding: 10px 0; /* Отступы */
+    text-align: center; /* Центрирование текста */
+    position: absolute; /* Позволяет расположить панель в верхней части */
+    top: 0; /* Привязывает панель к верхней части страницы */
+    left: 0; /* Привязывает панель к левому краю страницы */
+}
+
+.nav-container {
+    display: flex; /* Используем flex для горизонтального расположения */
+    justify-content: flex-start; /* Выравнивание по левому краю */
+    padding-left: 20px; /* Отступ слева */
+}
+
+.nav-button {
+    color: white; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    padding: 10px 20px; /* Отступы внутри кнопок */
+    border-radius: 5px; /* Закругление углов */
+    transition: background-color 0.2s; /* Плавный переход цвета */
+    margin-right: 10px; /* Отступ между кнопками */
+}
+
+.nav-button:hover {
+    background-color: #42a79f; /* Цвет при наведении */
+}
+
+.form-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: left;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin: 10px 0;
+    padding: 12px 15px;
+    width: 100%;
+    border: 1px solid #d1d1d6;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border 0.2s;
+}
+
+input:focus {
+    border-color: #42a79f;
+    outline: none;
+}
+
+input::placeholder {
+    color: #ababab;
+    opacity: 1;
+}
+
+button {
+    padding: 12px;
+    background-color: #3b9890;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #42a79f;
+}
