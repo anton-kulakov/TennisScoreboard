@@ -1,9 +1,9 @@
 CREATE SCHEMA IF NOT EXISTS database;
-CREATE TABLE players (
+CREATE TABLE IF NOT EXISTS players (
                          id INTEGER PRIMARY KEY AUTO_INCREMENT,
                          name VARCHAR UNIQUE
 );
-CREATE TABLE matches (
+CREATE TABLE IF NOT EXISTS matches (
                          id INTEGER PRIMARY KEY AUTO_INCREMENT,
                          player1 INTEGER,
                          player2 INTEGER,
