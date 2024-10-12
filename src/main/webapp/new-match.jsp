@@ -5,18 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tennis Scoreboard</title>
     <link rel="stylesheet" href="css/new-match.css">
-    <script>
-        function validateForm() {
-            const player1 = document.getElementById('player1').value.trim();
-            const player2 = document.getElementById('player2').value.trim();
-
-            if (player1 === player2) {
-                alert('The names of the players must be different');
-                return false;
-            }
-            return true;
-        }
-    </script>
+    <script src="${pageContext.request.contextPath}/js/validateForm.js"></script>
 </head>
 <body>
 
