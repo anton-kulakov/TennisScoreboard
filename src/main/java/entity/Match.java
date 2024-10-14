@@ -30,4 +30,6 @@ public class Match {
     @JoinColumn(name = "winner")
     private Player winner;
 
+    @Transient
+    private MatchScore matchScore;
 }

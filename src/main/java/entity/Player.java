@@ -1,7 +1,6 @@
 package entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +9,6 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "players")
 public class Player {
@@ -20,4 +18,8 @@ public class Player {
 
     @Column(unique = true)
     private String name;
+
+    public Player(String name) {
+        this.name = name;
+    }
 }
