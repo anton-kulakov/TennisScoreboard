@@ -4,14 +4,14 @@ import dao.PlayerDAO;
 import entity.Match;
 import entity.MatchScore;
 import entity.Player;
-import exception.DBException;
+import org.hibernate.HibernateException;
 
 import java.util.Optional;
 
 public class NewMatchService {
     PlayerDAO playerDAO = PlayerDAO.getInstance();
 
-    public Match createNewMatch(String firstPlayerName, String secondPlayerName) throws DBException {
+    public Match createNewMatch(String firstPlayerName, String secondPlayerName) throws HibernateException {
         Player firstPlayer = getPlayer(firstPlayerName);
         Player secondPlayer = getPlayer(secondPlayerName);
 
@@ -22,7 +22,7 @@ public class NewMatchService {
                 .build();
     }
 
-    private Player getPlayer(String playerName) throws DBException {
+    private Player getPlayer(String playerName) throws HibernateException {
         Optional<Player> optionalPlayer = playerDAO.getByName(playerName);
 
         Player player;

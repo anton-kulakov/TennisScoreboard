@@ -4,16 +4,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.hibernate.HibernateException;
 
 import java.io.IOException;
 
+import static jakarta.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+
 public abstract class AbstractMainController extends HttpServlet {
     protected ObjectMapper objectMapper;
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            handleGet(req, resp);
+            handlePost(req, resp);
+        } catch (HibernateException e) {
+            sendError(SC_INTERNAL_SERVER_ERROR, "Something happened with the database. Please try again later!", resp);
         } catch (Exception e) {
-            sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Fatal error", resp);
+            sendError(SC_INTERNAL_SERVER_ERROR, "Fatal error", resp);
         }
     }
 
@@ -27,5 +32,5 @@ public abstract class AbstractMainController extends HttpServlet {
         }
     }
 
-    abstract protected void handleGet(HttpServletRequest req, HttpServletResponse resp);
+    abstract protected void handlePost(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 }
