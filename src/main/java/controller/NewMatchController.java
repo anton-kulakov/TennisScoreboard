@@ -20,7 +20,7 @@ public class NewMatchController extends AbstractMainController {
     }
 
     @Override
-    protected void handlePost(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String firstPlayerName = req.getParameter("player1");
         String secondPlayerName = req.getParameter("player2");
 

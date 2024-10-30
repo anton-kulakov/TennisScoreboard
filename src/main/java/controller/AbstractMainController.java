@@ -12,9 +12,9 @@ import static jakarta.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 
 public abstract class AbstractMainController extends HttpServlet {
     protected ObjectMapper objectMapper;
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            handlePost(req, resp);
+            super.service(req, resp);
         } catch (HibernateException e) {
             sendError(SC_INTERNAL_SERVER_ERROR, "Something happened with the database. Please try again later!", resp);
         } catch (Exception e) {
@@ -31,6 +31,4 @@ public abstract class AbstractMainController extends HttpServlet {
             e.printStackTrace();
         }
     }
-
-    abstract protected void handlePost(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 }
