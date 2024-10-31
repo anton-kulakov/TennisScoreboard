@@ -15,6 +15,8 @@ public abstract class AbstractMainController extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
         try {
             super.service(req, resp);
+        } catch (AppException e) {
+            sendError(e.code, e.message, resp);
         } catch (HibernateException e) {
             sendError(SC_INTERNAL_SERVER_ERROR, "Something happened with the database. Please try again later!", resp);
         } catch (Exception e) {
