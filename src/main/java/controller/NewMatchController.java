@@ -24,8 +24,18 @@ public class NewMatchController extends AbstractMainController {
         String firstPlayerName = req.getParameter("player1");
         String secondPlayerName = req.getParameter("player2");
 
-        if (!isPlayersNamesValid(firstPlayerName, secondPlayerName)) {
-            throw new AppException(SC_BAD_REQUEST, "The names of the players should be different and should consist of letters");
+        if(!playerNameValidator.isNameConsistsOfLetters(firstPlayerName)) {
+            throw new AppException(SC_BAD_REQUEST,
+                    String.format("You have entered a name: %s. The name should consist of letters.", firstPlayerName));
+        }
+
+        if(!playerNameValidator.isNameConsistsOfLetters(secondPlayerName)) {
+            throw new AppException(SC_BAD_REQUEST,
+                    String.format("You have entered a name: %s. The name should consist of letters.", secondPlayerName));
+        }
+
+        if (playerNameValidator.areNamesEquals(firstPlayerName, secondPlayerName)) {
+            throw new AppException(SC_BAD_REQUEST, "The names of the players should be different");
         }
 
         NewMatchService newMatchService = new NewMatchService();
@@ -35,14 +45,5 @@ public class NewMatchController extends AbstractMainController {
         String uuid = ongoingMatchesService.addMatch(newMatch);
 
         resp.sendRedirect("match-score?uuid=" + uuid);
-    }
-
-
-    private boolean isPlayersNamesValid(String firstPlayerName, String secondPlayerName) {
-        return !firstPlayerName.isBlank() &&
-               !secondPlayerName.isBlank() &&
-               !firstPlayerName.equals(secondPlayerName) &&
-               firstPlayerName.replaceAll("\\s+", "").matches("^[a-zA-Zа-яА-ЯёЁ]+$") &&
-               secondPlayerName.replaceAll("\\s+", "").matches("^[a-zA-Zа-яА-ЯёЁ]+$");
     }
 }
