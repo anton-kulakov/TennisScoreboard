@@ -9,7 +9,11 @@ import org.hibernate.HibernateException;
 import java.util.Optional;
 
 public class NewMatchService {
-    PlayerDAO playerDAO = PlayerDAO.getInstance();
+    PlayerDAO playerDAO;
+
+    public NewMatchService(PlayerDAO playerDAO) {
+        this.playerDAO = playerDAO;
+    }
 
     public Match createNewMatch(String firstPlayerName, String secondPlayerName) throws HibernateException {
         Player firstPlayer = getPlayer(firstPlayerName);
@@ -21,7 +25,6 @@ public class NewMatchService {
                 .matchScore(new MatchScore())
                 .build();
     }
-
     private Player getPlayer(String playerName) throws HibernateException {
         Optional<Player> optionalPlayer = playerDAO.getByName(playerName);
 

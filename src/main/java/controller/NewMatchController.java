@@ -2,6 +2,7 @@ package controller;
 
 import entity.Match;
 import exception.AppException;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +16,14 @@ import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 
 @WebServlet("/new-match")
 public class NewMatchController extends AbstractMainController {
+
+    NewMatchService newMatchService;
+    OngoingMatchesService ongoingMatchesService;
+
+    public void init(ServletConfig config) {
+        newMatchService = (NewMatchService) config.getServletContext().getAttribute("newMatchService");
+        ongoingMatchesService = (OngoingMatchesService) config.getServletContext().getAttribute("ongoingMatchesService");
+    }
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("new-match.jsp").forward(req, resp);
     }
@@ -37,9 +46,6 @@ public class NewMatchController extends AbstractMainController {
         if (playerNameValidator.areNamesEquals(firstPlayerName, secondPlayerName)) {
             throw new AppException(SC_BAD_REQUEST, "The names of the players should be different");
         }
-
-        NewMatchService newMatchService = new NewMatchService();
-        OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
 
         Match newMatch = newMatchService.createNewMatch(firstPlayerName, secondPlayerName);
         String uuid = ongoingMatchesService.addMatch(newMatch);

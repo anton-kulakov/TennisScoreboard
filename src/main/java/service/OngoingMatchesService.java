@@ -13,6 +13,7 @@ public class OngoingMatchesService {
     }
     public String addMatch(Match match) {
         UUID uuid = UUID.randomUUID();
+
         while (ongoingMatchesMap.containsKey(uuid.toString())) {
             uuid = UUID.randomUUID();
         }
