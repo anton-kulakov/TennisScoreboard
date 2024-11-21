@@ -8,7 +8,6 @@ import util.HibernateUtil;
 import java.util.Optional;
 
 public class PlayerDAO {
-    private final static PlayerDAO INSTANCE = new PlayerDAO();
 
     public Optional<Player> getByName(String name) throws HibernateException {
         String hqlQuery = "FROM Player p WHERE p.name = :name";
@@ -24,11 +23,5 @@ public class PlayerDAO {
             session.persist(player);
             session.getTransaction().commit();
         }
-    }
-    public static PlayerDAO getInstance() {
-        return INSTANCE;
-    }
-    private PlayerDAO() {
-
     }
 }

@@ -13,7 +13,7 @@ public class AppContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
-        PlayerDAO playerDAO = PlayerDAO.getInstance();
+        PlayerDAO playerDAO = new PlayerDAO();
 
         servletContext.setAttribute("playerDAO", playerDAO);
         servletContext.setAttribute("newMatchService", new NewMatchService(playerDAO));
