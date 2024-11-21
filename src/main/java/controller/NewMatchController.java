@@ -35,16 +35,26 @@ public class NewMatchController extends AbstractMainController {
 
         if(!playerNameValidator.isNameConsistsOfLetters(firstPlayerName)) {
             throw new AppException(SC_BAD_REQUEST,
-                    String.format("You have entered a name: %s. The name should consist of letters.", firstPlayerName));
+                    "You have entered a name: %s. The name should consist of letters.".formatted(firstPlayerName));
         }
 
         if(!playerNameValidator.isNameConsistsOfLetters(secondPlayerName)) {
             throw new AppException(SC_BAD_REQUEST,
-                    String.format("You have entered a name: %s. The name should consist of letters.", secondPlayerName));
+                    "You have entered a name: %s. The name should consist of letters.".formatted(secondPlayerName));
         }
 
         if (playerNameValidator.areNamesEquals(firstPlayerName, secondPlayerName)) {
             throw new AppException(SC_BAD_REQUEST, "The names of the players should be different");
+        }
+
+        if (playerNameValidator.isNameLongerThanMaxLength(firstPlayerName)) {
+            throw new AppException(SC_BAD_REQUEST,
+                    "The name of the first player should be less than %d characters.".formatted(playerNameValidator.getMaxNameLength()));
+        }
+
+        if (playerNameValidator.isNameLongerThanMaxLength(secondPlayerName)) {
+            throw new AppException(SC_BAD_REQUEST,
+                    "The name of the second player should be less than %d characters.".formatted(playerNameValidator.getMaxNameLength()));
         }
 
         Match newMatch = newMatchService.createNewMatch(firstPlayerName, secondPlayerName);
