@@ -12,8 +12,7 @@ public class DeucePoint extends BaseScore {
 
         if (isPointsLessThanWinningPoint(WINNING_POINT)) {
             if (isPointsEqualDeucePoint()) {
-                firstPlayerPoints = 0;
-                secondPlayerPoints = 0;
+                reset();
             }
 
             return;
