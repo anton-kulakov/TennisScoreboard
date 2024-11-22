@@ -26,4 +26,9 @@ public class BaseScore {
         return Optional.ofNullable(this.winner);
     }
 
+    public void reset() {
+        firstPlayerPoints = 0;
+        secondPlayerPoints = 0;
+        winner = null;
+    }
 }

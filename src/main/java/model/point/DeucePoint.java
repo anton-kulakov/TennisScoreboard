@@ -29,10 +29,4 @@ public class DeucePoint extends BaseScore {
     private boolean isPointsLessThanWinningPoint() {
         return firstPlayerPoints < WINNING_POINT && secondPlayerPoints < WINNING_POINT;
     }
-
-    public void reset() {
-        firstPlayerPoints = 0;
-        secondPlayerPoints = 0;
-        winner = null;
-    }
 }

@@ -49,10 +49,4 @@ public class GameScore extends BaseScore {
     public void resetWinningPointDifference() {
         winningPointDifference = 2;
     }
-
-    public void reset() {
-        firstPlayerPoints = 0;
-        secondPlayerPoints = 0;
-        winner = null;
-    }
 }

@@ -38,10 +38,4 @@ public class RegularPoint extends BaseScore {
     private boolean isThereWinningPointDifference() {
         return Math.abs(firstPlayerPoints - secondPlayerPoints) >= WINNING_POINT_DIFFERENCE;
     }
-
-    public void reset() {
-        firstPlayerPoints = 0;
-        secondPlayerPoints = 0;
-        winner = null;
-    }
 }
