@@ -1,16 +1,9 @@
 package model.point;
 
-import lombok.Getter;
+import model.BaseScore;
 import model.EnumPlayer;
 
-import java.util.Optional;
-
-public class TiebreakPoint {
-    @Getter
-    private int firstPlayerPoints;
-    @Getter
-    private int secondPlayerPoints;
-    private EnumPlayer winner;
+public class TiebreakPoint extends BaseScore {
     private final int WINNING_POINT = 7;
     private final int WINNING_POINT_DIFFERENCE = 2;
 
@@ -28,14 +21,6 @@ public class TiebreakPoint {
         setWinner();
     }
 
-    private void addPoint(EnumPlayer pointWinner) {
-        if (pointWinner.equals(EnumPlayer.FIRST_PLAYER)) {
-            firstPlayerPoints++;
-        } else {
-            secondPlayerPoints++;
-        }
-    }
-
     private boolean isPointsLessThanWinningPoint() {
         return firstPlayerPoints < WINNING_POINT && secondPlayerPoints < WINNING_POINT;
     }
@@ -44,12 +29,6 @@ public class TiebreakPoint {
         return Math.abs(firstPlayerPoints - secondPlayerPoints) >= WINNING_POINT_DIFFERENCE;
     }
 
-    private void setWinner() {
-        winner = (firstPlayerPoints > secondPlayerPoints) ? EnumPlayer.FIRST_PLAYER : EnumPlayer.SECOND_PLAYER;
-    }
-    public Optional<EnumPlayer> getOptionalWinner() {
-        return Optional.ofNullable(this.winner);
-    }
     public void reset() {
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;

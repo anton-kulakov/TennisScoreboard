@@ -1,18 +1,10 @@
 package model;
 
-import lombok.Getter;
 import model.point.CurrentPoint;
 
-import java.util.Optional;
-
-public class GameScore {
+public class GameScore extends BaseScore {
     private final CurrentPoint currentPoint;
-    @Getter
-    private int firstPlayerPoints;
-    @Getter
-    private int secondPlayerPoints;
     private boolean isTiebreak;
-    EnumPlayer winner;
     private final int WINNING_POINT = 6;
     private int winningPointDifference = 2;
     public GameScore(CurrentPoint currentPoint) {
@@ -43,17 +35,6 @@ public class GameScore {
         setWinner();
     }
 
-    private void addPoint(EnumPlayer pointWinner) {
-        if (pointWinner.equals(EnumPlayer.FIRST_PLAYER)) {
-            firstPlayerPoints++;
-        } else {
-            secondPlayerPoints++;
-        }
-    }
-    private void setWinner() {
-        winner = (firstPlayerPoints > secondPlayerPoints) ? EnumPlayer.FIRST_PLAYER : EnumPlayer.SECOND_PLAYER;
-    }
-
     private boolean isPointsEqualWinningPoint() {
         return WINNING_POINT == firstPlayerPoints && WINNING_POINT == secondPlayerPoints;
     }
@@ -65,16 +46,13 @@ public class GameScore {
     private boolean isPointsLessThanWinningPoint() {
         return firstPlayerPoints < WINNING_POINT && secondPlayerPoints < WINNING_POINT;
     }
-    public Optional<EnumPlayer> getOptionalWinner() {
-        return Optional.ofNullable(this.winner);
+    public void resetWinningPointDifference() {
+        winningPointDifference = 2;
     }
+
     public void reset() {
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;
         winner = null;
-    }
-
-    public void resetWinningPointDifference() {
-        winningPointDifference = 2;
     }
 }
