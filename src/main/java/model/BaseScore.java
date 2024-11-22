@@ -30,6 +30,10 @@ public class BaseScore {
         return firstPlayerPoints < winningPoint && secondPlayerPoints < winningPoint;
     }
 
+    protected boolean isThereWinningPointDifference(int winningPointDifference) {
+        return Math.abs(firstPlayerPoints - secondPlayerPoints) >= winningPointDifference;
+    }
+
     public void reset() {
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;

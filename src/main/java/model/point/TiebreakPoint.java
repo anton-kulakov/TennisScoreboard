@@ -14,14 +14,10 @@ public class TiebreakPoint extends BaseScore {
             return;
         }
 
-        if (!isThereWinningPointDifference()) {
+        if (!isThereWinningPointDifference(WINNING_POINT_DIFFERENCE)) {
             return;
         }
 
         setWinner();
-    }
-
-    private boolean isThereWinningPointDifference() {
-        return Math.abs(firstPlayerPoints - secondPlayerPoints) >= WINNING_POINT_DIFFERENCE;
     }
 }

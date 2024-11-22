@@ -26,7 +26,7 @@ public class GameScore extends BaseScore {
             return;
         }
 
-        if (!isThereWinningPointDifference()) {
+        if (!isThereWinningPointDifference(winningPointDifference)) {
             return;
         }
 
@@ -35,10 +35,6 @@ public class GameScore extends BaseScore {
 
     private boolean isPointsEqualWinningPoint() {
         return WINNING_POINT == firstPlayerPoints && WINNING_POINT == secondPlayerPoints;
-    }
-
-    private boolean isThereWinningPointDifference() {
-        return Math.abs(firstPlayerPoints - secondPlayerPoints) >= winningPointDifference;
     }
     public void resetWinningPointDifference() {
         winningPointDifference = 2;

@@ -18,7 +18,7 @@ public class RegularPoint extends BaseScore {
             return;
         }
 
-        if (!isThereWinningPointDifference()) {
+        if (!isThereWinningPointDifference(WINNING_POINT_DIFFERENCE)) {
             return;
         }
 
@@ -27,9 +27,5 @@ public class RegularPoint extends BaseScore {
 
     private boolean isPointsEqualDeucePoint() {
         return DEUCE_POINT == firstPlayerPoints && DEUCE_POINT == secondPlayerPoints;
-    }
-
-    private boolean isThereWinningPointDifference() {
-        return Math.abs(firstPlayerPoints - secondPlayerPoints) >= WINNING_POINT_DIFFERENCE;
     }
 }
