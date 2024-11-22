@@ -11,7 +11,7 @@ public class DeucePoint extends BaseScore {
         addPoint(pointWinner);
 
         if (isPointsLessThanWinningPoint(WINNING_POINT)) {
-            if (isPointsEqualDeucePoint()) {
+            if (isPointsEqualConstantPoint(DEUCE_POINT)) {
                 reset();
             }
 
@@ -19,9 +19,5 @@ public class DeucePoint extends BaseScore {
         }
 
         setWinner();
-    }
-
-    private boolean isPointsEqualDeucePoint() {
-        return DEUCE_POINT == firstPlayerPoints && DEUCE_POINT == secondPlayerPoints;
     }
 }

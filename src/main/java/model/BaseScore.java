@@ -34,6 +34,10 @@ public class BaseScore {
         return Math.abs(firstPlayerPoints - secondPlayerPoints) >= winningPointDifference;
     }
 
+    protected boolean isPointsEqualConstantPoint(int constantPoint) {
+        return constantPoint == firstPlayerPoints && constantPoint == secondPlayerPoints;
+    }
+
     public void reset() {
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;
