@@ -10,8 +10,6 @@ public class RegularPoint {
     private int firstPlayerPoints;
     @Getter
     private int secondPlayerPoints;
-    @Getter
-    private boolean isFinished;
     private boolean isDeuce;
     private EnumPlayer winner;
     private final int WINNING_POINT = 4;
@@ -34,7 +32,6 @@ public class RegularPoint {
         }
 
         setWinner();
-        isFinished = true;
     }
 
     private boolean isPointsEqualDeucePoint() {
@@ -69,6 +66,5 @@ public class RegularPoint {
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;
         winner = null;
-        isFinished = false;
     }
 }

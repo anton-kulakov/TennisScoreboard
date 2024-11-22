@@ -10,8 +10,6 @@ public class DeucePoint {
     private int firstPlayerPoints;
     @Getter
     private int secondPlayerPoints;
-    @Getter
-    private boolean isFinished;
     private EnumPlayer winner;
     private final int WINNING_POINT = 2;
     private final int DEUCE_POINT = 1;
@@ -29,7 +27,6 @@ public class DeucePoint {
         }
 
         setWinner();
-        isFinished = true;
     }
 
     private void setWinner() {
@@ -59,6 +56,5 @@ public class DeucePoint {
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;
         winner = null;
-        isFinished = false;
     }
 }

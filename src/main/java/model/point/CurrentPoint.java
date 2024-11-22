@@ -16,8 +16,6 @@ public class CurrentPoint {
     private int secondPlayerPoints;
     @Setter
     private boolean isTiebreak;
-    @Getter
-    private boolean isFinished;
     private boolean isDeuce;
     private EnumPlayer winner;
     private final int DEUCE_SCORE_POINT = 3;
@@ -30,12 +28,9 @@ public class CurrentPoint {
     public void update(EnumPlayer pointWinner) {
         if (isTiebreak) {
             tiebreakPoint.update(pointWinner);
-            isFinished = tiebreakPoint.isFinished();
 
-            if (isFinished) {
-                if (tiebreakPoint.getOptionalWinner().isPresent()) {
-                    winner = tiebreakPoint.getOptionalWinner().get();
-                }
+            if (tiebreakPoint.getOptionalWinner().isPresent()) {
+                winner = tiebreakPoint.getOptionalWinner().get();
                 tiebreakPoint.reset();
                 isTiebreak = false;
             }
@@ -44,13 +39,11 @@ public class CurrentPoint {
             secondPlayerPoints = tiebreakPoint.getSecondPlayerPoints();
         } else if (isDeuce) {
             deucePoint.update(pointWinner);
-            isFinished = deucePoint.isFinished();
 
-            if (isFinished) {
-                if (deucePoint.getOptionalWinner().isPresent()) {
-                    winner = deucePoint.getOptionalWinner().get();
-                }
+            if (deucePoint.getOptionalWinner().isPresent()) {
+                winner = deucePoint.getOptionalWinner().get();
                 deucePoint.reset();
+                regularPoint.reset();
                 isDeuce = false;
             }
 
@@ -58,12 +51,10 @@ public class CurrentPoint {
             secondPlayerPoints = deucePoint.getSecondPlayerPoints();
         } else {
             regularPoint.update(pointWinner);
-            isFinished = regularPoint.isFinished();
 
-            if (isFinished) {
-                if (regularPoint.getOptionalWinner().isPresent()) {
-                    winner = regularPoint.getOptionalWinner().get();
-                }
+            if (regularPoint.getOptionalWinner().isPresent()) {
+                winner = regularPoint.getOptionalWinner().get();
+                regularPoint.reset();
             }
 
             firstPlayerPoints = regularPoint.getFirstPlayerPoints();
@@ -83,13 +74,6 @@ public class CurrentPoint {
         return Optional.ofNullable(this.winner);
     }
     public void reset() {
-        if (isTiebreak) {
-            tiebreakPoint.reset();
-            isTiebreak = false;
-        } else {
-            regularPoint.reset();
-        }
-
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;
         winner = null;

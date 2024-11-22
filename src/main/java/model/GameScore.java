@@ -11,8 +11,6 @@ public class GameScore {
     private int firstPlayerPoints;
     @Getter
     private int secondPlayerPoints;
-    @Getter
-    private boolean isFinished;
     private boolean isTiebreak;
     EnumPlayer winner;
     private final int WINNING_POINT = 6;
@@ -29,7 +27,7 @@ public class GameScore {
 
         currentPoint.update(pointWinner);
 
-        if (currentPoint.isFinished() && currentPoint.getOptionalWinner().isPresent()) {
+        if (currentPoint.getOptionalWinner().isPresent()) {
             addPoint(currentPoint.getOptionalWinner().get());
             currentPoint.reset();
         }
@@ -43,7 +41,6 @@ public class GameScore {
         }
 
         setWinner();
-        isFinished = true;
     }
 
     private void addPoint(EnumPlayer pointWinner) {
@@ -75,7 +72,9 @@ public class GameScore {
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;
         winner = null;
-        isFinished = false;
+    }
+
+    public void resetWinningPointDifference() {
         winningPointDifference = 2;
     }
 }

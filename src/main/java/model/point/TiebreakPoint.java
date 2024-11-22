@@ -10,8 +10,6 @@ public class TiebreakPoint {
     private int firstPlayerPoints;
     @Getter
     private int secondPlayerPoints;
-    @Getter
-    private boolean isFinished;
     private EnumPlayer winner;
     private final int WINNING_POINT = 7;
     private final int WINNING_POINT_DIFFERENCE = 2;
@@ -28,7 +26,6 @@ public class TiebreakPoint {
         }
 
         setWinner();
-        isFinished = true;
     }
 
     private void addPoint(EnumPlayer pointWinner) {
@@ -57,6 +54,5 @@ public class TiebreakPoint {
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;
         winner = null;
-        isFinished = false;
     }
 }

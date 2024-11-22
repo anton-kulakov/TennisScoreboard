@@ -15,18 +15,12 @@ public class MatchScore {
     private final GameScore gameScore;
     @Getter
     private final CurrentPoint currentPoint;
-    private final RegularPoint regularPoint;
-    private final TiebreakPoint tiebreakPoint;
-    private final DeucePoint deucePoint;
     private EnumPlayer winner;
-    private final int WINNING_POINT = 2;
 
-    @Getter
-    private boolean isFinished;
     public MatchScore() {
-        this.regularPoint = new RegularPoint();
-        this.tiebreakPoint = new TiebreakPoint();
-        this.deucePoint = new DeucePoint();
+        RegularPoint regularPoint = new RegularPoint();
+        TiebreakPoint tiebreakPoint = new TiebreakPoint();
+        DeucePoint deucePoint = new DeucePoint();
         this.currentPoint = new CurrentPoint(regularPoint, tiebreakPoint, deucePoint);
         this.gameScore = new GameScore(currentPoint);
         this.setScore = new SetScore(gameScore);
@@ -35,11 +29,8 @@ public class MatchScore {
     public void update(EnumPlayer pointWinner) {
         setScore.update(pointWinner);
 
-        if (setScore.isFinished()) {
-            if (setScore.getOptionalWinner().isPresent()) {
-                winner = setScore.getOptionalWinner().get();
-            }
-            isFinished = true;
+        if (setScore.getOptionalWinner().isPresent()) {
+            winner = setScore.getOptionalWinner().get();
         }
     }
 

@@ -5,14 +5,12 @@ import lombok.Getter;
 import java.util.Optional;
 
 public class SetScore {
+    private final GameScore gameScore;
     @Getter
     private int firstPlayerPoints;
     @Getter
     private int secondPlayerPoints;
-    private final GameScore gameScore;
     private EnumPlayer winner;
-    @Getter
-    private boolean isFinished;
     private final int WINNING_POINT = 2;
     public SetScore(GameScore gameScore) {
         this.gameScore = gameScore;
@@ -20,8 +18,9 @@ public class SetScore {
     void update(EnumPlayer pointWinner) {
         gameScore.update(pointWinner);
 
-        if (gameScore.isFinished() && gameScore.getOptionalWinner().isPresent()) {
+        if (gameScore.getOptionalWinner().isPresent()) {
             addPoint(gameScore.getOptionalWinner().get());
+            gameScore.resetWinningPointDifference();
             gameScore.reset();
         }
 
@@ -30,7 +29,6 @@ public class SetScore {
         }
 
         setWinner();
-        isFinished = true;
     }
 
     private void addPoint(EnumPlayer pointWinner) {
