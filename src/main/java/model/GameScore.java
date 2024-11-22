@@ -5,7 +5,7 @@ import model.point.CurrentPoint;
 public class GameScore extends BaseScore {
     private final CurrentPoint currentPoint;
     private boolean isTiebreak;
-    private final int WINNING_POINT = 6;
+    private static final int WINNING_POINT = 6;
     private int winningPointDifference = 2;
     public GameScore(CurrentPoint currentPoint) {
         this.currentPoint = currentPoint;

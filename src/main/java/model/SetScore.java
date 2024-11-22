@@ -2,7 +2,7 @@ package model;
 
 public class SetScore extends BaseScore {
     private final GameScore gameScore;
-    private final int WINNING_POINT = 2;
+    private static final int WINNING_POINT = 2;
     public SetScore(GameScore gameScore) {
         this.gameScore = gameScore;
     }

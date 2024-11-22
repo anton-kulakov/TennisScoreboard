@@ -5,9 +5,9 @@ import model.EnumPlayer;
 
 public class RegularPoint extends BaseScore {
     private boolean isDeuce;
-    private final int WINNING_POINT = 4;
-    private final int WINNING_POINT_DIFFERENCE = 2;
-    private final int DEUCE_POINT = 3;
+    private static final int WINNING_POINT = 4;
+    private static final int WINNING_POINT_DIFFERENCE = 2;
+    private static final int DEUCE_POINT = 3;
     void update(EnumPlayer pointWinner) {
         addPoint(pointWinner);
 

@@ -18,7 +18,7 @@ public class CurrentPoint {
     private boolean isTiebreak;
     private boolean isDeuce;
     private EnumPlayer winner;
-    private final int DEUCE_SCORE_POINT = 3;
+    private static final int DEUCE_SCORE_POINT = 3;
     public CurrentPoint(RegularPoint regularPoint, TiebreakPoint tiebreakPoint, DeucePoint deucePoint) {
         this.regularPoint = regularPoint;
         this.tiebreakPoint = tiebreakPoint;

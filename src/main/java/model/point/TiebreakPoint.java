@@ -4,8 +4,8 @@ import model.BaseScore;
 import model.EnumPlayer;
 
 public class TiebreakPoint extends BaseScore {
-    private final int WINNING_POINT = 7;
-    private final int WINNING_POINT_DIFFERENCE = 2;
+    private static final int WINNING_POINT = 7;
+    private static final int WINNING_POINT_DIFFERENCE = 2;
 
     void update(EnumPlayer pointWinner) {
         addPoint(pointWinner);
