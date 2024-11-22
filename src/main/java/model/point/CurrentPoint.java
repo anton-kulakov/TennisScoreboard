@@ -18,6 +18,7 @@ public class CurrentPoint {
     private boolean isTiebreak;
     private boolean isDeuce;
     private EnumPlayer winner;
+    private static final int DEUCE_POINT = 1;
     private static final int DEUCE_SCORE_POINT = 3;
     public CurrentPoint(RegularPoint regularPoint, TiebreakPoint tiebreakPoint, DeucePoint deucePoint) {
         this.regularPoint = regularPoint;
@@ -47,6 +48,10 @@ public class CurrentPoint {
                 isDeuce = false;
             }
 
+            if (arePointsEqualDeucePoint(deucePoint.getFirstPlayerPoints(), deucePoint.getSecondPlayerPoints())) {
+                deucePoint.reset();
+            }
+
             firstPlayerPoints = deucePoint.getFirstPlayerPoints();
             secondPlayerPoints = deucePoint.getSecondPlayerPoints();
         } else {
@@ -60,19 +65,23 @@ public class CurrentPoint {
             firstPlayerPoints = regularPoint.getFirstPlayerPoints();
             secondPlayerPoints = regularPoint.getSecondPlayerPoints();
 
-            if (isPointsEqualDeucePoint()) {
+            if (isPointsEqualDeuceScorePoint()) {
                 isDeuce = true;
             }
         }
     }
 
-    private boolean isPointsEqualDeucePoint() {
+    private boolean isPointsEqualDeuceScorePoint() {
         return DEUCE_SCORE_POINT == firstPlayerPoints && DEUCE_SCORE_POINT == secondPlayerPoints;
     }
 
+    private boolean arePointsEqualDeucePoint(int deuceFirstPlayerPoint, int deuceSecondPlayerPoint) {
+        return DEUCE_POINT == deuceFirstPlayerPoint && DEUCE_POINT == deuceSecondPlayerPoint;
+    }
     public Optional<EnumPlayer> getOptionalWinner() {
         return Optional.ofNullable(this.winner);
     }
+
     public void reset() {
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;
