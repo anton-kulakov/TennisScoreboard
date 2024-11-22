@@ -1,9 +1,9 @@
-package model.point;
+package model.points;
 
 import model.BaseScore;
 import model.EnumPlayer;
 
-public abstract class BaseGamePoint extends BaseScore {
+public abstract class AbstractPoints extends BaseScore {
     protected abstract int getWinningPoint();
     protected abstract int getWinningPointDifference();
 

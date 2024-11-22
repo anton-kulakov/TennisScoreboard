@@ -1,25 +1,25 @@
 package model;
 
-import model.point.CurrentPoint;
+import model.points.CurrentPoints;
 
 public class GameScore extends BaseScore {
-    private final CurrentPoint currentPoint;
+    private final CurrentPoints currentPoints;
     private static final int WINNING_POINT = 6;
     private int winningPointDifference = 2;
-    public GameScore(CurrentPoint currentPoint) {
-        this.currentPoint = currentPoint;
+    public GameScore(CurrentPoints currentPoints) {
+        this.currentPoints = currentPoints;
     }
     void update(EnumPlayer pointWinner) {
         if (arePointsEqualConstantPoint(WINNING_POINT)) {
-            currentPoint.setTiebreak(true);
+            currentPoints.setTiebreak(true);
             winningPointDifference = 1;
         }
 
-        currentPoint.update(pointWinner);
+        currentPoints.update(pointWinner);
 
-        if (currentPoint.getOptionalWinner().isPresent()) {
-            addPoint(currentPoint.getOptionalWinner().get());
-            currentPoint.reset();
+        if (currentPoints.getOptionalWinner().isPresent()) {
+            addPoint(currentPoints.getOptionalWinner().get());
+            currentPoints.reset();
         }
 
         if (arePointsLessThanWinningPoint(WINNING_POINT)) {

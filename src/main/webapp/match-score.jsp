@@ -37,13 +37,13 @@
             <td>${match.player1.name}</td>
             <td>${match.matchScore.setScore.firstPlayerPoints}</td>
             <td>${match.matchScore.gameScore.firstPlayerPoints}</td>
-            <td>${match.matchScore.currentPoint.firstPlayerPoints}</td>
+            <td>${match.matchScore.currentPoints.firstPlayerPoints}</td>
         </tr>
         <tr>
             <td>${match.player2.name}</td>
             <td>${match.matchScore.setScore.secondPlayerPoints}</td>
             <td>${match.matchScore.gameScore.secondPlayerPoints}</td>
-            <td>${match.matchScore.currentPoint.secondPlayerPoints}</td>
+            <td>${match.matchScore.currentPoints.secondPlayerPoints}</td>
         </tr>
         </tbody>
     </table>

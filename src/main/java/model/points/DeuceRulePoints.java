@@ -1,9 +1,9 @@
-package model.point;
+package model.points;
 
-public class TiebreakPoint extends BaseGamePoint {
+public class DeuceRulePoints extends AbstractPoints {
     @Override
     protected int getWinningPoint() {
-        return 7;
+        return 2;
     }
 
     @Override

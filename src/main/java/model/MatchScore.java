@@ -1,23 +1,23 @@
 package model;
 
 import lombok.Getter;
-import model.point.CurrentPoint;
-import model.point.DeucePoint;
-import model.point.RegularPoint;
-import model.point.TiebreakPoint;
+import model.points.CurrentPoints;
+import model.points.DeuceRulePoints;
+import model.points.RegularRulePoints;
+import model.points.TiebreakRulePoints;
 
 @Getter
 public class MatchScore {
     private final SetScore setScore;
     private final GameScore gameScore;
-    private final CurrentPoint currentPoint;
+    private final CurrentPoints currentPoints;
 
     public MatchScore() {
-        RegularPoint regularPoint = new RegularPoint();
-        TiebreakPoint tiebreakPoint = new TiebreakPoint();
-        DeucePoint deucePoint = new DeucePoint();
-        this.currentPoint = new CurrentPoint(regularPoint, tiebreakPoint, deucePoint);
-        this.gameScore = new GameScore(currentPoint);
+        RegularRulePoints regularRulePoints = new RegularRulePoints();
+        TiebreakRulePoints tiebreakRulePoints = new TiebreakRulePoints();
+        DeuceRulePoints deuceRulePoints = new DeuceRulePoints();
+        this.currentPoints = new CurrentPoints(regularRulePoints, tiebreakRulePoints, deuceRulePoints);
+        this.gameScore = new GameScore(currentPoints);
         this.setScore = new SetScore(gameScore);
     }
 

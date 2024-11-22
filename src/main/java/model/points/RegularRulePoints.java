@@ -1,6 +1,6 @@
-package model.point;
+package model.points;
 
-public class RegularPoint extends BaseGamePoint {
+public class RegularRulePoints extends AbstractPoints {
     @Override
     protected int getWinningPoint() {
         return 4;
