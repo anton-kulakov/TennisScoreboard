@@ -65,13 +65,13 @@ public class CurrentPoint {
             firstPlayerPoints = regularPoint.getFirstPlayerPoints();
             secondPlayerPoints = regularPoint.getSecondPlayerPoints();
 
-            if (isPointsEqualDeuceScorePoint()) {
+            if (arePointsEqualDeuceScorePoint()) {
                 isDeuce = true;
             }
         }
     }
 
-    private boolean isPointsEqualDeuceScorePoint() {
+    private boolean arePointsEqualDeuceScorePoint() {
         return DEUCE_SCORE_POINT == firstPlayerPoints && DEUCE_SCORE_POINT == secondPlayerPoints;
     }
 
