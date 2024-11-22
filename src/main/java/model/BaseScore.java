@@ -26,6 +26,10 @@ public class BaseScore {
         return Optional.ofNullable(this.winner);
     }
 
+    protected boolean isPointsLessThanWinningPoint(int winningPoint) {
+        return firstPlayerPoints < winningPoint && secondPlayerPoints < winningPoint;
+    }
+
     public void reset() {
         firstPlayerPoints = 0;
         secondPlayerPoints = 0;

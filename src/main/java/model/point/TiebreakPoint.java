@@ -10,7 +10,7 @@ public class TiebreakPoint extends BaseScore {
     void update(EnumPlayer pointWinner) {
         addPoint(pointWinner);
 
-        if (isPointsLessThanWinningPoint()) {
+        if (isPointsLessThanWinningPoint(WINNING_POINT)) {
             return;
         }
 
@@ -19,10 +19,6 @@ public class TiebreakPoint extends BaseScore {
         }
 
         setWinner();
-    }
-
-    private boolean isPointsLessThanWinningPoint() {
-        return firstPlayerPoints < WINNING_POINT && secondPlayerPoints < WINNING_POINT;
     }
 
     private boolean isThereWinningPointDifference() {

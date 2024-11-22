@@ -15,14 +15,10 @@ public class SetScore extends BaseScore {
             gameScore.reset();
         }
 
-        if (isPointsLessThanWinningPoint()) {
+        if (isPointsLessThanWinningPoint(WINNING_POINT)) {
             return;
         }
 
         setWinner();
-    }
-
-    private boolean isPointsLessThanWinningPoint() {
-        return firstPlayerPoints < WINNING_POINT && secondPlayerPoints < WINNING_POINT;
     }
 }

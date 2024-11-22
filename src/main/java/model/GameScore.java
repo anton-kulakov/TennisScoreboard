@@ -4,7 +4,6 @@ import model.point.CurrentPoint;
 
 public class GameScore extends BaseScore {
     private final CurrentPoint currentPoint;
-    private boolean isTiebreak;
     private static final int WINNING_POINT = 6;
     private int winningPointDifference = 2;
     public GameScore(CurrentPoint currentPoint) {
@@ -12,8 +11,7 @@ public class GameScore extends BaseScore {
     }
     void update(EnumPlayer pointWinner) {
         if (isPointsEqualWinningPoint()) {
-            isTiebreak = true;
-            currentPoint.setTiebreak(isTiebreak);
+            currentPoint.setTiebreak(true);
             winningPointDifference = 1;
         }
 
@@ -24,7 +22,7 @@ public class GameScore extends BaseScore {
             currentPoint.reset();
         }
 
-        if (isPointsLessThanWinningPoint()) {
+        if (isPointsLessThanWinningPoint(WINNING_POINT)) {
             return;
         }
 
@@ -41,10 +39,6 @@ public class GameScore extends BaseScore {
 
     private boolean isThereWinningPointDifference() {
         return Math.abs(firstPlayerPoints - secondPlayerPoints) >= winningPointDifference;
-    }
-
-    private boolean isPointsLessThanWinningPoint() {
-        return firstPlayerPoints < WINNING_POINT && secondPlayerPoints < WINNING_POINT;
     }
     public void resetWinningPointDifference() {
         winningPointDifference = 2;
