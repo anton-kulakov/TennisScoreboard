@@ -29,12 +29,14 @@ public class CurrentPoints {
     public void update(EnumPlayer pointWinner) {
         if (isTiebreak) {
             updatePoints(tiebreakRulePoints, pointWinner);
+            setWinnerIfPresent(tiebreakRulePoints);
             refreshCurrentPoints(tiebreakRulePoints);
             return;
         }
 
         if (isDeuce) {
             updatePoints(deuceRulePoints, pointWinner);
+            setWinnerIfPresent(deuceRulePoints);
 
             if (arePointsEqualDeucePoint(deuceRulePoints.getFirstPlayerPoints(), deuceRulePoints.getSecondPlayerPoints())) {
                 deuceRulePoints.reset();
@@ -45,6 +47,7 @@ public class CurrentPoints {
         }
 
         updatePoints(regularRulePoints, pointWinner);
+        setWinnerIfPresent(regularRulePoints);
         refreshCurrentPoints(regularRulePoints);
 
         if (arePointsEqualDeuceScorePoint()) {
@@ -59,7 +62,9 @@ public class CurrentPoints {
 
     private void updatePoints(AbstractPoints points, EnumPlayer pointWinner) {
         points.update(pointWinner);
+    }
 
+    private void setWinnerIfPresent(AbstractPoints points) {
         if (points.getOptionalWinner().isPresent()) {
             winner = points.getOptionalWinner().get();
             resetOtherRulePoints(points);
