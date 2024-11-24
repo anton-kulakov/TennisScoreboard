@@ -28,43 +28,66 @@ public class CurrentPoints {
 
     public void update(EnumPlayer pointWinner) {
         if (isTiebreak) {
-            tiebreakRulePoints.update(pointWinner);
+            updatePoints(tiebreakRulePoints, pointWinner);
+            refreshCurrentPoints(tiebreakRulePoints);
+            return;
+        }
 
-            if (tiebreakRulePoints.getOptionalWinner().isPresent()) {
-                winner = tiebreakRulePoints.getOptionalWinner().get();
-                tiebreakRulePoints.reset();
-                isTiebreak = false;
-            }
-
-            updateCurrentPoints(tiebreakRulePoints);
-        } else if (isDeuce) {
-            deuceRulePoints.update(pointWinner);
-
-            if (deuceRulePoints.getOptionalWinner().isPresent()) {
-                winner = deuceRulePoints.getOptionalWinner().get();
-                deuceRulePoints.reset();
-                regularRulePoints.reset();
-                isDeuce = false;
-            }
+        if (isDeuce) {
+            updatePoints(deuceRulePoints, pointWinner);
 
             if (arePointsEqualDeucePoint(deuceRulePoints.getFirstPlayerPoints(), deuceRulePoints.getSecondPlayerPoints())) {
                 deuceRulePoints.reset();
             }
 
-            updateCurrentPoints(deuceRulePoints);
-        } else {
-            regularRulePoints.update(pointWinner);
+            refreshCurrentPoints(deuceRulePoints);
+            return;
+        }
 
-            if (regularRulePoints.getOptionalWinner().isPresent()) {
-                winner = regularRulePoints.getOptionalWinner().get();
-                regularRulePoints.reset();
-            }
+        updatePoints(regularRulePoints, pointWinner);
+        refreshCurrentPoints(regularRulePoints);
 
-            updateCurrentPoints(regularRulePoints);
+        if (arePointsEqualDeuceScorePoint()) {
+            isDeuce = true;
+        }
+    }
 
-            if (arePointsEqualDeuceScorePoint()) {
-                isDeuce = true;
-            }
+    private void refreshCurrentPoints(AbstractPoints points) {
+        firstPlayerPoints = points.getFirstPlayerPoints();
+        secondPlayerPoints = points.getSecondPlayerPoints();
+    }
+
+    private void updatePoints(AbstractPoints points, EnumPlayer pointWinner) {
+        points.update(pointWinner);
+
+        if (points.getOptionalWinner().isPresent()) {
+            winner = points.getOptionalWinner().get();
+            resetOtherRulePoints(points);
+            resetStatus(points);
+        }
+    }
+
+    private void resetStatus(AbstractPoints updatedPoints) {
+        if (updatedPoints.equals(tiebreakRulePoints)) {
+            isTiebreak = false;
+        }
+
+        if (updatedPoints.equals(deuceRulePoints)) {
+            isDeuce = false;
+        }
+    }
+    private void resetOtherRulePoints(AbstractPoints updatedPoints) {
+        if (updatedPoints.equals(tiebreakRulePoints)) {
+            tiebreakRulePoints.reset();
+        }
+
+        if (updatedPoints.equals(deuceRulePoints)) {
+            deuceRulePoints.reset();
+            regularRulePoints.reset();
+        }
+
+        if (updatedPoints.equals(regularRulePoints)) {
+            regularRulePoints.reset();
         }
     }
 
@@ -74,11 +97,6 @@ public class CurrentPoints {
 
     private boolean arePointsEqualDeucePoint(int deuceFirstPlayerPoint, int deuceSecondPlayerPoint) {
         return DEUCE_POINT == deuceFirstPlayerPoint && DEUCE_POINT == deuceSecondPlayerPoint;
-    }
-
-    public void updateCurrentPoints(AbstractPoints points) {
-        firstPlayerPoints = points.getFirstPlayerPoints();
-        secondPlayerPoints = points.getSecondPlayerPoints();
     }
     public Optional<EnumPlayer> getOptionalWinner() {
         return Optional.ofNullable(this.winner);
