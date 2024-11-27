@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.EnumPlayer;
+import service.FinishedMatchesPersistenceService;
+import service.MatchScoreCalculationService;
 import service.OngoingMatchesService;
 import java.io.IOException;
 
@@ -18,8 +20,12 @@ import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 @WebServlet("/match-score")
 public class MatchScoreController extends HttpServlet {
     OngoingMatchesService ongoingMatchesService;
+    MatchScoreCalculationService matchScoreCalculationService;
+    FinishedMatchesPersistenceService finishedMatchesPersistenceService;
     public void init(ServletConfig config) {
         ongoingMatchesService = (OngoingMatchesService) config.getServletContext().getAttribute("ongoingMatchesService");
+        matchScoreCalculationService = (MatchScoreCalculationService) config.getServletContext().getAttribute("matchScoreCalculationService");
+        finishedMatchesPersistenceService = (FinishedMatchesPersistenceService) config.getServletContext().getAttribute("finishedMatchesPersistenceService");
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,7 +35,7 @@ public class MatchScoreController extends HttpServlet {
             throw new AppException(SC_BAD_REQUEST, "Match UUID is empty");
         }
 
-        Match ongoingMatch = ongoingMatchesService.getMatch(uuid)
+        Match ongoingMatch = ongoingMatchesService.get(uuid)
                 .orElseThrow(() -> new AppException(SC_NOT_FOUND, "The match with UUID %s was not found".formatted(uuid)));
 
         req.setAttribute("match", ongoingMatch);
@@ -49,7 +55,7 @@ public class MatchScoreController extends HttpServlet {
             throw new AppException(SC_BAD_REQUEST, "Player's ID is empty");
         }
 
-        Match ongoingMatch = ongoingMatchesService.getMatch(uuid)
+        Match ongoingMatch = ongoingMatchesService.get(uuid)
                 .orElseThrow(() -> new AppException(SC_NOT_FOUND, "The match with UUID %s was not found".formatted(uuid)));
 
         int playerID = Integer.parseInt(stringPlayerID);
@@ -61,7 +67,14 @@ public class MatchScoreController extends HttpServlet {
             pointWinner = EnumPlayer.SECOND_PLAYER;
         }
 
-        ongoingMatch.getMatchScore().update(pointWinner);
-        resp.sendRedirect("match-score?uuid=" + uuid);
+        matchScoreCalculationService.updateMatchScore(ongoingMatch, pointWinner);
+
+        if (matchScoreCalculationService.isMatchFinished(ongoingMatch)) {
+            Match match = matchScoreCalculationService.getFinishedMatch(ongoingMatch, pointWinner);
+            ongoingMatchesService.remove(uuid);
+            finishedMatchesPersistenceService.save(match);
+        } else {
+            resp.sendRedirect("match-score?uuid=" + uuid);
+        }
     }
 }

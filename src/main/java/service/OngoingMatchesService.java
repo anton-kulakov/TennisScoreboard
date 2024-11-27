@@ -12,18 +12,23 @@ public class OngoingMatchesService {
     public OngoingMatchesService() {
         ongoingMatches = new ConcurrentHashMap<>();
     }
-    public String addMatch(Match match) {
+    public String add(Match match) {
         UUID uuid = UUID.randomUUID();
 
         while (ongoingMatches.containsKey(uuid.toString())) {
             uuid = UUID.randomUUID();
         }
+
         ongoingMatches.put(uuid.toString(), match);
 
         return uuid.toString();
     }
 
-    public Optional<Match> getMatch(String uuid) {
+    public Optional<Match> get(String uuid) {
         return ongoingMatches.containsKey(uuid) ? Optional.of(ongoingMatches.get(uuid)) : Optional.empty();
+    }
+
+    public void remove(String uuid) {
+        ongoingMatches.remove(uuid);
     }
 }

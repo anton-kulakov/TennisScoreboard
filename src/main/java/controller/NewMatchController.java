@@ -58,7 +58,7 @@ public class NewMatchController extends AbstractMainController {
         }
 
         Match newMatch = newMatchService.createNewMatch(firstPlayerName, secondPlayerName);
-        String uuid = ongoingMatchesService.addMatch(newMatch);
+        String uuid = ongoingMatchesService.add(newMatch);
 
         resp.sendRedirect("match-score?uuid=" + uuid);
     }
