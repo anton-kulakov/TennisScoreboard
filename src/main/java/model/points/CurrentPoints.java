@@ -20,10 +20,10 @@ public class CurrentPoints {
     private EnumPlayer winner;
     private static final int DEUCE_POINT = 1;
     private static final int DEUCE_SCORE_POINT = 3;
-    public CurrentPoints(RegularRulePoints regularRulePoints, TiebreakRulePoints tiebreakRulePoints, DeuceRulePoints deuceRulePoints) {
+    public CurrentPoints(RegularRulePoints regularRulePoints, DeuceRulePoints deuceRulePoints, TiebreakRulePoints tiebreakRulePoints) {
         this.regularRulePoints = regularRulePoints;
-        this.tiebreakRulePoints = tiebreakRulePoints;
         this.deuceRulePoints = deuceRulePoints;
+        this.tiebreakRulePoints = tiebreakRulePoints;
     }
 
     public void update(EnumPlayer pointWinner) {

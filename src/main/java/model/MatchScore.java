@@ -16,7 +16,7 @@ public class MatchScore {
         RegularRulePoints regularRulePoints = new RegularRulePoints();
         TiebreakRulePoints tiebreakRulePoints = new TiebreakRulePoints();
         DeuceRulePoints deuceRulePoints = new DeuceRulePoints();
-        this.currentPoints = new CurrentPoints(regularRulePoints, tiebreakRulePoints, deuceRulePoints);
+        this.currentPoints = new CurrentPoints(regularRulePoints, deuceRulePoints, tiebreakRulePoints);
         this.gameScore = new GameScore(currentPoints);
         this.setScore = new SetScore(gameScore);
     }
