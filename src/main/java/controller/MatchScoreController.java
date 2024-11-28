@@ -9,9 +9,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.EnumPlayer;
+import model.MatchResult;
 import service.FinishedMatchesPersistenceService;
-import service.MatchScoreCalculationService;
+import service.MatchResultService;
 import service.OngoingMatchesService;
+
 import java.io.IOException;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
@@ -20,11 +22,11 @@ import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 @WebServlet("/match-score")
 public class MatchScoreController extends HttpServlet {
     OngoingMatchesService ongoingMatchesService;
-    MatchScoreCalculationService matchScoreCalculationService;
+    MatchResultService matchResultService;
     FinishedMatchesPersistenceService finishedMatchesPersistenceService;
     public void init(ServletConfig config) {
         ongoingMatchesService = (OngoingMatchesService) config.getServletContext().getAttribute("ongoingMatchesService");
-        matchScoreCalculationService = (MatchScoreCalculationService) config.getServletContext().getAttribute("matchScoreCalculationService");
+        matchResultService = (MatchResultService) config.getServletContext().getAttribute("matchResultService");
         finishedMatchesPersistenceService = (FinishedMatchesPersistenceService) config.getServletContext().getAttribute("finishedMatchesPersistenceService");
     }
 
@@ -43,7 +45,7 @@ public class MatchScoreController extends HttpServlet {
         req.getRequestDispatcher("match-score.jsp").forward(req, resp);
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String uuid = req.getParameter("uuid");
         String stringPlayerID = req.getParameter("playerID");
 
@@ -67,14 +69,21 @@ public class MatchScoreController extends HttpServlet {
             pointWinner = EnumPlayer.SECOND_PLAYER;
         }
 
-        matchScoreCalculationService.updateMatchScore(ongoingMatch, pointWinner);
+        ongoingMatch.getMatchScore().update(pointWinner);
 
-        if (matchScoreCalculationService.isMatchFinished(ongoingMatch)) {
-            Match match = matchScoreCalculationService.getFinishedMatch(ongoingMatch, pointWinner);
+        if (matchResultService.isMatchFinished(ongoingMatch)) {
+            matchResultService.setMatchWinner(ongoingMatch);
+            matchResultService.setMatchResult(ongoingMatch);
+
+            MatchResult matchResult = ongoingMatch.getMatchScore().getMatchResult();
+            finishedMatchesPersistenceService.save(ongoingMatch);
             ongoingMatchesService.remove(uuid);
-            finishedMatchesPersistenceService.save(match);
-        } else {
-            resp.sendRedirect("match-score?uuid=" + uuid);
+
+            req.setAttribute("matchResult", matchResult);
+            req.getRequestDispatcher("/completed-match.jsp").forward(req, resp);
+            return;
         }
+
+        resp.sendRedirect("match-score?uuid=" + uuid);
     }
 }

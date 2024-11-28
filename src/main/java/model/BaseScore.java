@@ -6,11 +6,11 @@ import java.util.Optional;
 
 public class BaseScore {
     @Getter
-    protected int firstPlayerPoints;
+    private int firstPlayerPoints;
     @Getter
-    protected int secondPlayerPoints;
+    private int secondPlayerPoints;
 
-    protected EnumPlayer winner;
+    private EnumPlayer winner;
 
     protected void addPoint(EnumPlayer pointWinner) {
         if (pointWinner.equals(EnumPlayer.FIRST_PLAYER)) {
@@ -28,7 +28,7 @@ public class BaseScore {
         return Math.abs(firstPlayerPoints - secondPlayerPoints) >= winningPointDifference;
     }
 
-    protected boolean arePointsEqualConstantPoint(int constantPoint) {
+    boolean arePointsEqualConstantPoint(int constantPoint) {
         return constantPoint == firstPlayerPoints && constantPoint == secondPlayerPoints;
     }
 
