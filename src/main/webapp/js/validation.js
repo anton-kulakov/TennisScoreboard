@@ -1,6 +1,6 @@
 const MAX_NAME_LENGTH = 55;
 
-function validateForm() {
+function validation() {
     const player1 = document.getElementById('player1').value.trim();
     const player2 = document.getElementById('player2').value.trim();
 

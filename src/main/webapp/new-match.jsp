@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tennis Scoreboard</title>
     <link rel="stylesheet" href="css/new-match.css">
-    <script src="${pageContext.request.contextPath}/js/validateForm.js"></script>
+    <script src="${pageContext.request.contextPath}/js/validation.js"></script>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 
 <div class="form-container">
     <h1>Start of the game</h1>
-    <form action="${pageContext.request.contextPath}/new-match" method="POST" onsubmit="return validateForm();">
+    <form action="${pageContext.request.contextPath}/new-match" method="POST" onsubmit="return validation();">
         <label for="player1">First player:</label>
         <input type="text" id="player1" name="player1" required placeholder="enter the name">
 
