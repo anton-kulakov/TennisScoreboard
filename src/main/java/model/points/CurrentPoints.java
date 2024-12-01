@@ -70,6 +70,22 @@ public class CurrentPoints {
             isDeuce = true;
         }
     }
+    public boolean getIsTiebreak() {
+        return isTiebreak;
+    }
+    public boolean getIsDeuce() {
+        return isTiebreak;
+    }
+
+    public Optional<EnumPlayer> getOptionalWinner() {
+        return Optional.ofNullable(this.winner);
+    }
+
+    public void reset() {
+        firstPlayerPoints = 0;
+        secondPlayerPoints = 0;
+        winner = null;
+    }
 
     private void refreshCurrentPoints(AbstractPoints points) {
         firstPlayerPoints = points.getFirstPlayerPoints();
@@ -98,21 +114,11 @@ public class CurrentPoints {
             regularRulePoints.reset();
         }
     }
-
     private boolean arePointsEqualDeuceScorePoint() {
         return DEUCE_SCORE_POINT == firstPlayerPoints && DEUCE_SCORE_POINT == secondPlayerPoints;
     }
 
     private boolean arePointsEqualDeucePoint(int deuceFirstPlayerPoint, int deuceSecondPlayerPoint) {
         return DEUCE_POINT == deuceFirstPlayerPoint && DEUCE_POINT == deuceSecondPlayerPoint;
-    }
-    public Optional<EnumPlayer> getOptionalWinner() {
-        return Optional.ofNullable(this.winner);
-    }
-
-    public void reset() {
-        firstPlayerPoints = 0;
-        secondPlayerPoints = 0;
-        winner = null;
     }
 }
