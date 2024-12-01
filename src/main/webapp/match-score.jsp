@@ -37,28 +37,64 @@
             <td>${match.player1.name}</td>
             <td>${match.matchScore.setScore.firstPlayerPoints}</td>
             <td>${match.matchScore.gameScore.firstPlayerPoints}</td>
-            <td>${match.matchScore.currentPoints.firstPlayerPoints}</td>
+            <td id="firstPlayerPoints">${match.matchScore.currentPoints.firstPlayerPoints}</td>
         </tr>
         <tr>
             <td>${match.player2.name}</td>
             <td>${match.matchScore.setScore.secondPlayerPoints}</td>
             <td>${match.matchScore.gameScore.secondPlayerPoints}</td>
-            <td>${match.matchScore.currentPoints.secondPlayerPoints}</td>
+            <td id="secondPlayerPoints">${match.matchScore.currentPoints.secondPlayerPoints}</td>
         </tr>
         </tbody>
     </table>
 
     <div class="buttons-container">
-    <form action="${pageContext.request.contextPath}/match-score?uuid=${uuid}" method="POST">
-        <input type="hidden" name="playerID" value="${match.player1.id}">
-        <button type="submit" class="point-button">${match.player1.name} won a point</button>
-    </form>
-    <form action="${pageContext.request.contextPath}/match-score?uuid=${uuid}" method="POST">
-        <input type="hidden" name="playerID" value="${match.player2.id}">
-        <button type="submit" class="point-button">${match.player2.name} won a point</button>
-    </form>
+        <form action="${pageContext.request.contextPath}/match-score?uuid=${uuid}" method="POST">
+            <input type="hidden" name="playerID" value="${match.player1.id}">
+            <button type="submit" class="point-button">${match.player1.name} won a point</button>
+        </form>
+        <form action="${pageContext.request.contextPath}/match-score?uuid=${uuid}" method="POST">
+            <input type="hidden" name="playerID" value="${match.player2.id}">
+            <button type="submit" class="point-button">${match.player2.name} won a point</button>
+        </form>
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const isDeuce = ${match.matchScore.currentPoints.isDeuce};
+        const isTiebreak = ${match.matchScore.currentPoints.isTiebreak};
+
+        function updatePlayerPoints(playerPointsElement, playerPoints) {
+            if (isTiebreak) {
+                return;
+            } else if (isDeuce) {
+                if (playerPoints === 0) {
+                    playerPointsElement.textContent = '';
+                } else {
+                    playerPointsElement.textContent = 'AD';
+                }
+            } else {
+                if (playerPoints === 1) {
+                    playerPointsElement.textContent = '15';
+                } else if (playerPoints === 2) {
+                    playerPointsElement.textContent = '30';
+                } else if (playerPoints === 3) {
+                    playerPointsElement.textContent = '40';
+                }
+            }
+        }
+
+        const firstPlayerPointsElement = document.getElementById('firstPlayerPoints');
+        let firstPlayerPoints = parseInt(firstPlayerPointsElement.textContent);
+        updatePlayerPoints(firstPlayerPointsElement, firstPlayerPoints);
+
+        const secondPlayerPointsElement = document.getElementById('secondPlayerPoints');
+        let secondPlayerPoints = parseInt(secondPlayerPointsElement.textContent);
+        updatePlayerPoints(secondPlayerPointsElement, secondPlayerPoints);
+    });
+</script>
+
 </body>
 </html>
+

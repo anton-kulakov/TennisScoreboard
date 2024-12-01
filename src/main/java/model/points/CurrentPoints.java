@@ -27,6 +27,10 @@ public class CurrentPoints {
     }
 
     public void update(EnumPlayer pointWinner) {
+        if (arePointsEqualDeuceScorePoint()) {
+            isDeuce = true;
+        }
+
         if (isTiebreak) {
             tiebreakRulePoints.update(pointWinner);
 
@@ -65,16 +69,12 @@ public class CurrentPoints {
         }
 
         refreshCurrentPoints(regularRulePoints);
-
-        if (arePointsEqualDeuceScorePoint()) {
-            isDeuce = true;
-        }
     }
     public boolean getIsTiebreak() {
         return isTiebreak;
     }
     public boolean getIsDeuce() {
-        return isTiebreak;
+        return isDeuce;
     }
 
     public Optional<EnumPlayer> getOptionalWinner() {
