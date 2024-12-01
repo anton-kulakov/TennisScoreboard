@@ -14,7 +14,7 @@ public class SetScore extends BaseScore {
 
         if (gameScore.getOptionalWinner().isPresent()) {
             addPoint(gameScore.getOptionalWinner().get());
-            saveMatchResult();
+            saveSetResult();
             gameScore.resetWinningPointDifference();
             gameScore.reset();
         }
@@ -26,7 +26,7 @@ public class SetScore extends BaseScore {
         setWinner();
     }
 
-    private void saveMatchResult() {
+    private void saveSetResult() {
         if (setCounter == 1) {
             matchResult.getFirstSet().put("firstPlayer", gameScore.getFirstPlayerPoints());
             matchResult.getFirstSet().put("secondPlayer", gameScore.getSecondPlayerPoints());
