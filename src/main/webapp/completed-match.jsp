@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +19,7 @@
 
 <div class="scoreboard-container">
     <h2>The match is over!</h2>
-    <h2>The winner is ${matchResult.winner} 🏆</h2> <!-- Выводим победителя -->
+    <h2>The winner is ${matchResult.winner} 🏆</h2>
 
     <table class="scoreboard">
         <colgroup>
@@ -38,13 +39,13 @@
         <tbody>
         <tr>
             <td>${matchResult.firstPlayerName}</td>
-            <td>${matchResult.firstSet.firstPlayer}</td> <!-- Результат игрока 1 в каждом сете -->
+            <td>${matchResult.firstSet.firstPlayer}</td>
             <td>${matchResult.secondSet.firstPlayer}</td>
             <td>${matchResult.thirdSet.firstPlayer}</td>
         </tr>
         <tr>
             <td>${matchResult.secondPlayerName}</td>
-            <td>${matchResult.firstSet.secondPlayer}</td> <!-- Результат игрока 1 в каждом сете -->
+            <td>${matchResult.firstSet.secondPlayer}</td>
             <td>${matchResult.secondSet.secondPlayer}</td>
             <td>${matchResult.thirdSet.secondPlayer}</td>
         </tr>
