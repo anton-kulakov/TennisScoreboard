@@ -37,13 +37,19 @@
             <td>${match.player1.name}</td>
             <td>${match.matchScore.setScore.firstPlayerPoints}</td>
             <td>${match.matchScore.gameScore.firstPlayerPoints}</td>
-            <td id="firstPlayerPoints">${match.matchScore.currentPoints.firstPlayerPoints}</td>
+            <td id="firstPlayerPoints"
+                data-mode="${match.matchScore.currentPoints.isDeuce ? 'deuce' : (match.matchScore.currentPoints.isTiebreak ? 'tiebreak' : 'regular')}">
+                ${match.matchScore.currentPoints.firstPlayerPoints}
+            </td>
         </tr>
         <tr>
             <td>${match.player2.name}</td>
             <td>${match.matchScore.setScore.secondPlayerPoints}</td>
             <td>${match.matchScore.gameScore.secondPlayerPoints}</td>
-            <td id="secondPlayerPoints">${match.matchScore.currentPoints.secondPlayerPoints}</td>
+            <td id="secondPlayerPoints"
+                data-mode="${match.matchScore.currentPoints.isDeuce ? 'deuce' : (match.matchScore.currentPoints.isTiebreak ? 'tiebreak' : 'regular')}">
+                ${match.matchScore.currentPoints.secondPlayerPoints}
+            </td>
         </tr>
         </tbody>
     </table>
@@ -62,17 +68,16 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const isDeuce = ${match.matchScore.currentPoints.isDeuce};
-        const isTiebreak = ${match.matchScore.currentPoints.isTiebreak};
-
-        function updatePlayerPoints(playerPointsElement, playerPoints) {
-            if (isTiebreak) {
+        function updatePlayerPoints(playerPointsElement, playerPoints, mode) {
+            if (mode === 'tiebreak') {
                 return;
-            } else if (isDeuce) {
+            } else if (mode === 'deuce') {
                 if (playerPoints === 0) {
                     playerPointsElement.textContent = '';
-                } else {
+                } else if (playerPoints === 1) {
                     playerPointsElement.textContent = 'AD';
+                } else if (playerPoints === 3) {
+                    playerPointsElement.textContent = '40';
                 }
             } else {
                 if (playerPoints === 1) {
@@ -87,11 +92,13 @@
 
         const firstPlayerPointsElement = document.getElementById('firstPlayerPoints');
         let firstPlayerPoints = parseInt(firstPlayerPointsElement.textContent);
-        updatePlayerPoints(firstPlayerPointsElement, firstPlayerPoints);
+        let firstPlayerMode = firstPlayerPointsElement.getAttribute('data-mode');
+        updatePlayerPoints(firstPlayerPointsElement, firstPlayerPoints, firstPlayerMode);
 
         const secondPlayerPointsElement = document.getElementById('secondPlayerPoints');
         let secondPlayerPoints = parseInt(secondPlayerPointsElement.textContent);
-        updatePlayerPoints(secondPlayerPointsElement, secondPlayerPoints);
+        let secondPlayerMode = firstPlayerPointsElement.getAttribute('data-mode');
+        updatePlayerPoints(secondPlayerPointsElement, secondPlayerPoints, secondPlayerMode);
     });
 </script>
 
