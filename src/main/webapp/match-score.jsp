@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -30,7 +31,14 @@
             <th>Players</th>
             <th>Sets</th>
             <th>Games</th>
-            <th>Points</th>
+            <c:choose>
+                <c:when test="${match.matchScore.currentPoints.isTiebreak}">
+                    <th>Tiebreak</th>
+                </c:when>
+                <c:otherwise>
+                    <th>Points</th>
+                </c:otherwise>
+            </c:choose>
         </tr>
         </thead>
         <tbody>
