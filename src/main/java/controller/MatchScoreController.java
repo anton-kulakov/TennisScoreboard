@@ -5,7 +5,6 @@ import exception.AppException;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.EnumPlayer;
@@ -20,7 +19,7 @@ import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 @WebServlet("/match-score")
-public class MatchScoreController extends HttpServlet {
+public class MatchScoreController extends AbstractMainController {
     OngoingMatchesService ongoingMatchesService;
     MatchResultService matchResultService;
     FinishedMatchesPersistenceService finishedMatchesPersistenceService;
