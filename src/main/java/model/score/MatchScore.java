@@ -1,10 +1,10 @@
-package model;
+package model.score;
 
 import lombok.Getter;
-import model.points.CurrentPoints;
-import model.points.DeuceRulePoints;
-import model.points.RegularRulePoints;
-import model.points.TiebreakRulePoints;
+import model.score.points.CurrentPoints;
+import model.score.points.DeuceRulePoints;
+import model.score.points.TiebreakRulePoints;
+import model.score.points.RegularRulePoints;
 
 @Getter
 public class MatchScore {

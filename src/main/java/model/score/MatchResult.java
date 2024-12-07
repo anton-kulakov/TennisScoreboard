@@ -1,4 +1,4 @@
-package model;
+package model.score;
 
 import lombok.Data;
 

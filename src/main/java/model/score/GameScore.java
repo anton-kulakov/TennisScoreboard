@@ -1,6 +1,6 @@
-package model;
+package model.score;
 
-import model.points.CurrentPoints;
+import model.score.points.CurrentPoints;
 
 public class GameScore extends BaseScore {
     private final CurrentPoints currentPoints;

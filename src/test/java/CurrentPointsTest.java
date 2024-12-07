@@ -1,8 +1,8 @@
-import model.EnumPlayer;
-import model.points.CurrentPoints;
-import model.points.DeuceRulePoints;
-import model.points.RegularRulePoints;
-import model.points.TiebreakRulePoints;
+import model.score.EnumPlayer;
+import model.score.points.CurrentPoints;
+import model.score.points.DeuceRulePoints;
+import model.score.points.RegularRulePoints;
+import model.score.points.TiebreakRulePoints;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

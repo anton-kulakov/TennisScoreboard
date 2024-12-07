@@ -1,4 +1,4 @@
-package model.points;
+package model.score.points;
 
 public class RegularRulePoints extends AbstractPoints {
     @Override

@@ -1,7 +1,7 @@
-package model.points;
+package model.score.points;
 
-import model.BaseScore;
-import model.EnumPlayer;
+import model.score.BaseScore;
+import model.score.EnumPlayer;
 
 public abstract class AbstractPoints extends BaseScore {
     protected abstract int getWinningPoint();

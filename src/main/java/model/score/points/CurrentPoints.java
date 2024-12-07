@@ -1,8 +1,8 @@
-package model.points;
+package model.score.points;
 
 import lombok.Getter;
 import lombok.Setter;
-import model.EnumPlayer;
+import model.score.EnumPlayer;
 
 import java.util.Optional;
 

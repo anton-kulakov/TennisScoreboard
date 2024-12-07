@@ -1,4 +1,4 @@
-package model;
+package model.score;
 
 public class SetScore extends BaseScore {
     private final GameScore gameScore;
