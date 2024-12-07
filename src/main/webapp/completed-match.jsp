@@ -13,7 +13,7 @@
     <div class="nav-container">
         <a href="${pageContext.request.contextPath}/" class="nav-button">Home</a>
         <a href="${pageContext.request.contextPath}/new-match" class="nav-button">New match</a>
-        <a href="" class="nav-button">Completed matches</a>
+        <a href="${pageContext.request.contextPath}/matches?page=&filter_by_player_name=" class="nav-button">Completed matches</a>
     </div>
 </nav>
 

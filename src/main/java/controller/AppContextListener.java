@@ -16,7 +16,7 @@ public class AppContextListener implements ServletContextListener {
         PlayerDAO playerDAO = new PlayerDAO();
         MatchDAO matchDAO = new MatchDAO();
 
-        servletContext.setAttribute("playerDAO", playerDAO);
+        servletContext.setAttribute("matchDAO", matchDAO);
         servletContext.setAttribute("newMatchService", new NewMatchService(playerDAO));
         servletContext.setAttribute("ongoingMatchesService", new OngoingMatchesService());
         servletContext.setAttribute("matchResultService", new MatchResultService());

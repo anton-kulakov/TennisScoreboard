@@ -1,5 +1,5 @@
-import model.EnumPlayer;
-import model.MatchScore;
+import model.score.EnumPlayer;
+import model.score.MatchScore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
