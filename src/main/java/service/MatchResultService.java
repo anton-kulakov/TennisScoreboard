@@ -1,8 +1,8 @@
 package service;
 
 import entity.Match;
-import model.EnumPlayer;
-import model.MatchResult;
+import model.score.EnumPlayer;
+import model.score.MatchResult;
 
 public class MatchResultService {
     public void setMatchResult(Match match) {

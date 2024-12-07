@@ -2,7 +2,7 @@ package service;
 
 import dao.PlayerDAO;
 import entity.Match;
-import model.MatchScore;
+import model.score.MatchScore;
 import entity.Player;
 import org.hibernate.HibernateException;
 
