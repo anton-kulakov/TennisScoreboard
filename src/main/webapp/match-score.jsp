@@ -65,11 +65,11 @@
 
     <div class="buttons-container">
         <form action="${pageContext.request.contextPath}/match-score?uuid=${uuid}" method="POST">
-            <input type="hidden" name="playerID" value="${match.player1.id}">
+            <input type="hidden" name="playerName" value="${match.player1.name}">
             <button type="submit" class="point-button">${match.player1.name} won a point</button>
         </form>
         <form action="${pageContext.request.contextPath}/match-score?uuid=${uuid}" method="POST">
-            <input type="hidden" name="playerID" value="${match.player2.id}">
+            <input type="hidden" name="playerName" value="${match.player2.name}">
             <button type="submit" class="point-button">${match.player2.name} won a point</button>
         </form>
     </div>

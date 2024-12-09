@@ -46,23 +46,22 @@ public class MatchScoreController extends AbstractMainController {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String uuid = req.getParameter("uuid");
-        String stringPlayerID = req.getParameter("playerID");
+        String playerName = req.getParameter("playerName");
 
         if (uuid.isBlank()) {
             throw new AppException(SC_BAD_REQUEST, "Match UUID is empty");
         }
 
-        if (stringPlayerID.isBlank()) {
-            throw new AppException(SC_BAD_REQUEST, "Player's ID is empty");
+        if (playerName.isBlank()) {
+            throw new AppException(SC_BAD_REQUEST, "Player's name is empty");
         }
 
         Match ongoingMatch = ongoingMatchesService.get(uuid)
                 .orElseThrow(() -> new AppException(SC_NOT_FOUND, "The match with UUID %s was not found".formatted(uuid)));
 
-        int playerID = Integer.parseInt(stringPlayerID);
         EnumPlayer pointWinner;
 
-        if (playerID == ongoingMatch.getPlayer1().getId()) {
+        if (playerName.equals(ongoingMatch.getPlayer1().getName())) {
             pointWinner = EnumPlayer.FIRST_PLAYER;
         } else {
             pointWinner = EnumPlayer.SECOND_PLAYER;

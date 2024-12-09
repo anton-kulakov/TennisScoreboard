@@ -27,16 +27,6 @@ public class NewMatchService {
     }
     private Player getPlayer(String playerName) throws HibernateException {
         Optional<Player> optionalPlayer = playerDAO.getByName(playerName);
-
-        Player player;
-
-        if (optionalPlayer.isEmpty()) {
-            player = new Player(playerName);
-            playerDAO.save(player);
-        } else {
-            player = optionalPlayer.get();
-        }
-
-        return player;
+        return optionalPlayer.orElseGet(() -> new Player(playerName));
     }
 }
