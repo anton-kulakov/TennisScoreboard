@@ -20,6 +20,6 @@ public class AppContextListener implements ServletContextListener {
         servletContext.setAttribute("newMatchService", new NewMatchService(playerDAO));
         servletContext.setAttribute("ongoingMatchesService", new OngoingMatchesService());
         servletContext.setAttribute("matchResultService", new MatchResultService());
-        servletContext.setAttribute("finishedMatchesPersistenceService", new FinishedMatchesPersistenceService(matchDAO));
+        servletContext.setAttribute("finishedMatchesPersistenceService", new FinishedMatchesPersistenceService(playerDAO, matchDAO));
     }
 }
