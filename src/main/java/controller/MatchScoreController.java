@@ -1,5 +1,6 @@
 package controller;
 
+import dao.MatchDAO;
 import entity.Match;
 import exception.AppException;
 import jakarta.servlet.ServletConfig;
@@ -9,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.score.EnumPlayer;
 import model.score.MatchResult;
-import service.FinishedMatchesPersistenceService;
 import service.MatchResultService;
 import service.OngoingMatchesService;
 
@@ -20,13 +20,13 @@ import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 @WebServlet("/match-score")
 public class MatchScoreController extends AbstractMainController {
+    MatchDAO matchDAO;
     OngoingMatchesService ongoingMatchesService;
     MatchResultService matchResultService;
-    FinishedMatchesPersistenceService finishedMatchesPersistenceService;
     public void init(ServletConfig config) {
+        matchDAO = (MatchDAO) config.getServletContext().getAttribute("matchDAO");
         ongoingMatchesService = (OngoingMatchesService) config.getServletContext().getAttribute("ongoingMatchesService");
         matchResultService = (MatchResultService) config.getServletContext().getAttribute("matchResultService");
-        finishedMatchesPersistenceService = (FinishedMatchesPersistenceService) config.getServletContext().getAttribute("finishedMatchesPersistenceService");
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -74,7 +74,7 @@ public class MatchScoreController extends AbstractMainController {
             matchResultService.setMatchResult(ongoingMatch);
 
             MatchResult matchResult = ongoingMatch.getMatchScore().getMatchResult();
-            finishedMatchesPersistenceService.save(ongoingMatch);
+            matchDAO.merge(ongoingMatch);
             ongoingMatchesService.remove(uuid);
 
             req.setAttribute("matchResult", matchResult);

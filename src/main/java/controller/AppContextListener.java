@@ -6,7 +6,9 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
-import service.*;
+import service.MatchResultService;
+import service.NewMatchService;
+import service.OngoingMatchesService;
 
 @WebListener
 public class AppContextListener implements ServletContextListener {
@@ -20,6 +22,5 @@ public class AppContextListener implements ServletContextListener {
         servletContext.setAttribute("newMatchService", new NewMatchService(playerDAO));
         servletContext.setAttribute("ongoingMatchesService", new OngoingMatchesService());
         servletContext.setAttribute("matchResultService", new MatchResultService());
-        servletContext.setAttribute("finishedMatchesPersistenceService", new FinishedMatchesPersistenceService(playerDAO, matchDAO));
     }
 }
