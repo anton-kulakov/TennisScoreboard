@@ -17,9 +17,8 @@ public class AppContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
-        MatchDAO matchDAO = new MatchDAO();
 
-        servletContext.setAttribute("matchDAO", matchDAO);
+        servletContext.setAttribute("matchDAO", new MatchDAO());
         servletContext.setAttribute("newMatchService", new NewMatchService(new PlayerDAO()));
         servletContext.setAttribute("ongoingMatchesService", new OngoingMatchesService(new ConcurrentHashMap<>()));
         servletContext.setAttribute("matchResultService", new MatchResultService());
