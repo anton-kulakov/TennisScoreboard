@@ -10,17 +10,18 @@ import service.MatchResultService;
 import service.NewMatchService;
 import service.OngoingMatchesService;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 @WebListener
 public class AppContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
-        PlayerDAO playerDAO = new PlayerDAO();
         MatchDAO matchDAO = new MatchDAO();
 
         servletContext.setAttribute("matchDAO", matchDAO);
-        servletContext.setAttribute("newMatchService", new NewMatchService(playerDAO));
-        servletContext.setAttribute("ongoingMatchesService", new OngoingMatchesService());
+        servletContext.setAttribute("newMatchService", new NewMatchService(new PlayerDAO()));
+        servletContext.setAttribute("ongoingMatchesService", new OngoingMatchesService(new ConcurrentHashMap<>()));
         servletContext.setAttribute("matchResultService", new MatchResultService());
     }
 }
