@@ -66,10 +66,10 @@ public class MatchDAO {
         return new Page(matches, pageNumber, totalPagesNumber);
     }
 
-    public void save(Match match) {
+    public void merge(Match match) {
         try (Session session = HibernateUtil.buildSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.persist(match);
+            session.merge(match);
             transaction.commit();
         }
     }
