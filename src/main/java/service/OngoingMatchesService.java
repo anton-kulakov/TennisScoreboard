@@ -13,15 +13,10 @@ public class OngoingMatchesService {
         ongoingMatches = new ConcurrentHashMap<>();
     }
     public String add(Match match) {
-        UUID uuid = UUID.randomUUID();
+        String uuid = UUID.randomUUID().toString();
+        ongoingMatches.put(uuid, match);
 
-        while (ongoingMatches.containsKey(uuid.toString())) {
-            uuid = UUID.randomUUID();
-        }
-
-        ongoingMatches.put(uuid.toString(), match);
-
-        return uuid.toString();
+        return uuid;
     }
 
     public Optional<Match> get(String uuid) {
