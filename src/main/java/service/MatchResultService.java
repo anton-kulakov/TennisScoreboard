@@ -5,7 +5,13 @@ import model.score.EnumPlayer;
 import model.score.MatchResult;
 
 public class MatchResultService {
+    public boolean isMatchFinished(Match match) {
+        return match.getMatchScore().getSetScore().getOptionalWinner().isPresent();
+    }
+
     public void setMatchResult(Match match) {
+        setMatchWinner(match);
+
         MatchResult matchResult = match.getMatchScore().getMatchResult();
 
         String firstPlayerName = match.getPlayer1().getName();
@@ -17,7 +23,7 @@ public class MatchResultService {
         matchResult.setWinner(winner);
     }
 
-    public void setMatchWinner(Match match) {
+    private void setMatchWinner(Match match) {
         if (match.getMatchScore().getSetScore().getOptionalWinner().isPresent()) {
             EnumPlayer enumWinner = match.getMatchScore().getSetScore().getOptionalWinner().get();
 
@@ -27,9 +33,5 @@ public class MatchResultService {
                 match.setWinner(match.getPlayer2());
             }
         }
-    }
-
-    public boolean isMatchFinished(Match match) {
-        return match.getMatchScore().getSetScore().getOptionalWinner().isPresent();
     }
 }

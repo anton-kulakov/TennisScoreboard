@@ -70,7 +70,6 @@ public class MatchScoreController extends AbstractMainController {
         ongoingMatch.getMatchScore().update(pointWinner);
 
         if (matchResultService.isMatchFinished(ongoingMatch)) {
-            matchResultService.setMatchWinner(ongoingMatch);
             matchResultService.setMatchResult(ongoingMatch);
 
             MatchResult matchResult = ongoingMatch.getMatchScore().getMatchResult();
