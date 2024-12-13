@@ -14,13 +14,15 @@ import java.util.Optional;
 @WebServlet("/matches")
 public class FinishedMatchesController extends AbstractMainController {
     MatchDAO matchDAO;
+    private final static int DEFAULT_PAGE_NUMBER = 1;
+    private final static int DEFAULT_MATCHES_PER_PAGE_NUMBER = 5;
 
     public void init(ServletConfig config) {
         matchDAO = (MatchDAO) config.getServletContext().getAttribute("matchDAO");
     }
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int currentPageNumber = 1;
-        int matchesPerPageNumber = 5;
+        int currentPageNumber = DEFAULT_PAGE_NUMBER;
+        int matchesPerPageNumber = DEFAULT_MATCHES_PER_PAGE_NUMBER;
 
         Optional<String> stringCurrentPageNumber = Optional.ofNullable(req.getParameter("page"));
         String playerName = req.getParameter("filter_by_player_name");

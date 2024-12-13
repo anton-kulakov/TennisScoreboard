@@ -16,7 +16,6 @@ import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 
 @WebServlet("/new-match")
 public class NewMatchController extends AbstractMainController {
-
     NewMatchService newMatchService;
     OngoingMatchesService ongoingMatchesService;
 
