@@ -8,7 +8,6 @@ import util.HibernateUtil;
 import java.util.Optional;
 
 public class PlayerDAO {
-
     public Optional<Player> getByName(String name) throws HibernateException {
         String hqlQuery = "FROM Player p WHERE p.name = :name";
 

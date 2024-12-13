@@ -12,6 +12,16 @@ public class BaseScore {
 
     private EnumPlayer winner;
 
+    public Optional<EnumPlayer> getOptionalWinner() {
+        return Optional.ofNullable(this.winner);
+    }
+
+    public void reset() {
+        firstPlayerPoints = 0;
+        secondPlayerPoints = 0;
+        winner = null;
+    }
+
     protected void addPoint(EnumPlayer pointWinner) {
         if (pointWinner.equals(EnumPlayer.FIRST_PLAYER)) {
             firstPlayerPoints++;
@@ -28,21 +38,11 @@ public class BaseScore {
         return Math.abs(firstPlayerPoints - secondPlayerPoints) >= winningPointDifference;
     }
 
-    boolean arePointsEqualConstantPoint(int constantPoint) {
+    protected boolean arePointsEqualConstantPoint(int constantPoint) {
         return constantPoint == firstPlayerPoints && constantPoint == secondPlayerPoints;
     }
 
     protected void setWinner() {
         winner = (firstPlayerPoints > secondPlayerPoints) ? EnumPlayer.FIRST_PLAYER : EnumPlayer.SECOND_PLAYER;
-    }
-
-    public Optional<EnumPlayer> getOptionalWinner() {
-        return Optional.ofNullable(this.winner);
-    }
-
-    public void reset() {
-        firstPlayerPoints = 0;
-        secondPlayerPoints = 0;
-        winner = null;
     }
 }
