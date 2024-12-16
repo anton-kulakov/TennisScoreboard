@@ -1,4 +1,4 @@
-const MAX_NAME_LENGTH = 55;
+const MAX_NAME_LENGTH = 30;
 
 function validation() {
     const player1 = document.getElementById('player1').value.trim();
