@@ -10,7 +10,7 @@ public abstract class AbstractPoints extends BaseScore {
     void update(EnumPlayer pointWinner) {
         addPoint(pointWinner);
 
-        if (arePointsLessThanWinningPoint(getWinningPoint())) {
+        if (isWinningPointGreaterThanPlayersPoints(getWinningPoint())) {
             return;
         }
 

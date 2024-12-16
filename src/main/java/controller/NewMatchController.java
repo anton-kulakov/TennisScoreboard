@@ -32,7 +32,7 @@ public class NewMatchController extends AbstractMainController {
                     "You have entered a name: %s. The name should consist of letters.".formatted(secondPlayerName));
         }
 
-        if (playerNameValidator.areNamesEquals(firstPlayerName, secondPlayerName)) {
+        if (playerNameValidator.isEqualsNames(firstPlayerName, secondPlayerName)) {
             throw new AppException(SC_BAD_REQUEST, "The names of the players should be different");
         }
 

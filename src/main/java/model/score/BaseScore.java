@@ -30,7 +30,7 @@ public class BaseScore {
         }
     }
 
-    protected boolean arePointsLessThanWinningPoint(int winningPoint) {
+    protected boolean isWinningPointGreaterThanPlayersPoints(int winningPoint) {
         return firstPlayerPoints < winningPoint && secondPlayerPoints < winningPoint;
     }
 
@@ -38,7 +38,7 @@ public class BaseScore {
         return Math.abs(firstPlayerPoints - secondPlayerPoints) >= winningPointDifference;
     }
 
-    protected boolean arePointsEqualConstantPoint(int constantPoint) {
+    protected boolean isConstantPointEqualPlayersPoints(int constantPoint) {
         return constantPoint == firstPlayerPoints && constantPoint == secondPlayerPoints;
     }
 

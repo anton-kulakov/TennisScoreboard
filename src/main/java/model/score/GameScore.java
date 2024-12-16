@@ -14,7 +14,7 @@ public class GameScore extends BaseScore {
     }
 
     void update(EnumPlayer pointWinner) {
-        if (arePointsEqualConstantPoint(WINNING_POINT)) {
+        if (isConstantPointEqualPlayersPoints(WINNING_POINT)) {
             currentPoints.setTiebreak(true);
             winningPointDifference = 1;
         }
@@ -26,7 +26,7 @@ public class GameScore extends BaseScore {
             currentPoints.reset();
         }
 
-        if (arePointsLessThanWinningPoint(WINNING_POINT)) {
+        if (isWinningPointGreaterThanPlayersPoints(WINNING_POINT)) {
             return;
         }
 

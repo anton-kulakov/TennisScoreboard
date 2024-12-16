@@ -49,7 +49,7 @@ public class CurrentPoints {
                 isDeuce = false;
             }
 
-            if (arePointsEqualDeucePoint(deuceRulePoints.getFirstPlayerPoints(), deuceRulePoints.getSecondPlayerPoints())) {
+            if (isDeucePointEqualPlayersPoints(deuceRulePoints.getFirstPlayerPoints(), deuceRulePoints.getSecondPlayerPoints())) {
                 deuceRulePoints.reset();
             }
 
@@ -66,7 +66,7 @@ public class CurrentPoints {
 
         refreshCurrentPoints(regularRulePoints);
 
-        if (arePointsEqualDeuceScorePoint()) {
+        if (isDeuceScorePointEqualPlayersPoints()) {
             isDeuce = true;
         }
     }
@@ -114,11 +114,11 @@ public class CurrentPoints {
             regularRulePoints.reset();
         }
     }
-    private boolean arePointsEqualDeuceScorePoint() {
+    private boolean isDeuceScorePointEqualPlayersPoints() {
         return DEUCE_SCORE_POINT == firstPlayerPoints && DEUCE_SCORE_POINT == secondPlayerPoints;
     }
 
-    private boolean arePointsEqualDeucePoint(int deuceFirstPlayerPoint, int deuceSecondPlayerPoint) {
+    private boolean isDeucePointEqualPlayersPoints(int deuceFirstPlayerPoint, int deuceSecondPlayerPoint) {
         return DEUCE_POINT == deuceFirstPlayerPoint && DEUCE_POINT == deuceSecondPlayerPoint;
     }
 }

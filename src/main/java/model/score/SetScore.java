@@ -19,7 +19,7 @@ public class SetScore extends BaseScore {
             gameScore.reset();
         }
 
-        if (arePointsLessThanWinningPoint(WINNING_POINT)) {
+        if (isWinningPointGreaterThanPlayersPoints(WINNING_POINT)) {
             return;
         }
 
