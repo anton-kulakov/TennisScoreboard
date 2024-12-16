@@ -17,17 +17,14 @@
     </div>
 </nav>
 
-<!-- Общий контейнер для всех элементов -->
 <div class="matches-container">
     <h2>Completed matches</h2>
 
-    <!-- Форма фильтрации по имени игрока -->
     <form action="${pageContext.request.contextPath}/matches" method="GET" class="search-form">
         <input type="text" name="filter_by_player_name" placeholder="Search by player name" value="${param.filter_by_player_name}">
         <button type="submit" class="search-button">Search</button>
     </form>
 
-    <!-- Таблица завершенных матчей -->
     <div class="matches-list">
         <c:if test="${not empty page.matches}">
             <table class="scoreboard">
@@ -62,7 +59,6 @@
         </c:if>
     </div>
 
-    <!-- Пагинация -->
     <div class="pagination">
         <c:if test="${page.pageNumber > 1}">
             <a href="${pageContext.request.contextPath}/matches?page=${page.pageNumber - 1}&filter_by_player_name=${param.filter_by_player_name}" class="pagination-button">Previous</a>
