@@ -2,13 +2,10 @@ package controller;
 
 import entity.Match;
 import exception.AppException;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.NewMatchService;
-import service.OngoingMatchesService;
 
 import java.io.IOException;
 
@@ -16,13 +13,6 @@ import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 
 @WebServlet("/new-match")
 public class NewMatchController extends AbstractMainController {
-    NewMatchService newMatchService;
-    OngoingMatchesService ongoingMatchesService;
-
-    public void init(ServletConfig config) {
-        newMatchService = (NewMatchService) config.getServletContext().getAttribute("newMatchService");
-        ongoingMatchesService = (OngoingMatchesService) config.getServletContext().getAttribute("ongoingMatchesService");
-    }
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("new-match.jsp").forward(req, resp);
     }

@@ -1,17 +1,13 @@
 package controller;
 
-import dao.MatchDAO;
 import entity.Match;
 import exception.AppException;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.score.EnumPlayer;
 import model.score.MatchResult;
-import service.MatchResultService;
-import service.OngoingMatchesService;
 
 import java.io.IOException;
 
@@ -20,15 +16,6 @@ import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 @WebServlet("/match-score")
 public class MatchScoreController extends AbstractMainController {
-    MatchDAO matchDAO;
-    OngoingMatchesService ongoingMatchesService;
-    MatchResultService matchResultService;
-    public void init(ServletConfig config) {
-        matchDAO = (MatchDAO) config.getServletContext().getAttribute("matchDAO");
-        ongoingMatchesService = (OngoingMatchesService) config.getServletContext().getAttribute("ongoingMatchesService");
-        matchResultService = (MatchResultService) config.getServletContext().getAttribute("matchResultService");
-    }
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String uuid = req.getParameter("uuid");
 

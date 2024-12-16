@@ -1,25 +1,39 @@
 package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dao.MatchDAO;
+import dao.PlayerDAO;
 import exception.AppException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.hibernate.HibernateException;
+import service.MatchResultService;
+import service.NewMatchService;
+import service.OngoingMatchesService;
 import util.PlayerNameValidator;
 
 import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static jakarta.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 
 public abstract class AbstractMainController extends HttpServlet {
     protected static ObjectMapper objectMapper;
     protected static PlayerNameValidator playerNameValidator;
+    protected static NewMatchService newMatchService;
+    protected static OngoingMatchesService ongoingMatchesService;
+    protected static MatchResultService matchResultService;
+    protected static MatchDAO matchDAO;
 
     static {
         objectMapper = new ObjectMapper();
         playerNameValidator = new PlayerNameValidator();
+        newMatchService = new NewMatchService(new PlayerDAO());
+        ongoingMatchesService = new OngoingMatchesService(new ConcurrentHashMap<>());
+        matchResultService = new MatchResultService();
+        matchDAO = new MatchDAO();
     }
 
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
