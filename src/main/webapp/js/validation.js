@@ -10,12 +10,12 @@ function validation() {
     }
 
     if (player1.length > MAX_NAME_LENGTH) {
-        alert('The name of the first player must not exceed 20 characters');
+        alert('The name of the first player must not exceed ' + MAX_NAME_LENGTH + ' characters');
         return false;
     }
 
     if (player2.length > MAX_NAME_LENGTH) {
-        alert('The name of the second player must not exceed 20 characters');
+        alert('The name of the second player must not exceed ' + MAX_NAME_LENGTH + ' characters');
         return false;
     }
 
