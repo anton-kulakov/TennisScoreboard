@@ -163,6 +163,12 @@ body {
     background-color: #42a79f;
 }
 
+.pagination-button.inactive {
+    background-color: #42a79f;
+    cursor: not-allowed;
+    visibility: hidden;
+}
+
 @media (max-width: 768px) {
     .matches-container {
         width: 95%;
