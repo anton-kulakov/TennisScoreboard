@@ -9,7 +9,7 @@ import org.hibernate.HibernateException;
 import java.util.Optional;
 
 public class NewMatchService {
-    PlayerDAO playerDAO;
+    private final PlayerDAO playerDAO;
 
     public NewMatchService(PlayerDAO playerDAO) {
         this.playerDAO = playerDAO;

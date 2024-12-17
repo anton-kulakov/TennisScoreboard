@@ -22,12 +22,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import static jakarta.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 
 public abstract class AbstractMainController extends HttpServlet {
-    protected static ObjectMapper objectMapper;
-    protected static PlayerNameValidator playerNameValidator;
-    protected static NewMatchService newMatchService;
-    protected static OngoingMatchesService ongoingMatchesService;
-    protected static MatchResultService matchResultService;
-    protected static MatchDAO matchDAO;
+    protected static final ObjectMapper objectMapper;
+    protected static final PlayerNameValidator playerNameValidator;
+    protected static final NewMatchService newMatchService;
+    protected static final OngoingMatchesService ongoingMatchesService;
+    protected static final MatchResultService matchResultService;
+    protected static final MatchDAO matchDAO;
 
     static {
         objectMapper = new ObjectMapper();
