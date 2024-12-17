@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
@@ -60,15 +60,15 @@
     </div>
 
     <div class="pagination">
-        <c:if test="${page.pageNumber > 1}">
-            <a href="${pageContext.request.contextPath}/matches?page=${page.pageNumber - 1}&filter_by_player_name=${param.filter_by_player_name}" class="pagination-button">Previous</a>
-        </c:if>
-        <c:if test="${not empty page.matches}">
-            <span class="page-number">Page ${page.pageNumber} of ${page.totalPagesNumber}</span>
-        </c:if>
-        <c:if test="${page.pageNumber < page.totalPagesNumber}">
-            <a href="${pageContext.request.contextPath}/matches?page=${page.pageNumber + 1}&filter_by_player_name=${param.filter_by_player_name}" class="pagination-button">Next</a>
-        </c:if>
+        <a href="${pageContext.request.contextPath}/matches?page=${page.pageNumber - 1}&filter_by_player_name=${param.filter_by_player_name}"
+           class="pagination-button ${page.pageNumber <= 1 ? 'inactive' : ''}">
+            Previous
+        </a>
+        <span class="page-number">Page ${page.pageNumber} of ${page.totalPagesNumber}</span>
+        <a href="${pageContext.request.contextPath}/matches?page=${page.pageNumber + 1}&filter_by_player_name=${param.filter_by_player_name}"
+           class="pagination-button ${page.pageNumber >= page.totalPagesNumber ? 'inactive' : ''}">
+            Next
+        </a>
     </div>
 
 </div>

@@ -149,6 +149,8 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none;
+    width: 60px;
 }
 
 .page-number {
@@ -159,6 +161,12 @@ body {
 
 .pagination-button:hover {
     background-color: #42a79f;
+}
+
+.pagination-button.inactive {
+    background-color: #42a79f;
+    cursor: not-allowed;
+    visibility: hidden;
 }
 
 @media (max-width: 768px) {
