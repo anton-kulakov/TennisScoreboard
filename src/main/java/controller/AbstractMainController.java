@@ -1,6 +1,5 @@
 package controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.MatchDAO;
 import dao.PlayerDAO;
 import entity.Match;
@@ -22,20 +21,18 @@ import java.util.concurrent.ConcurrentHashMap;
 import static jakarta.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 
 public abstract class AbstractMainController extends HttpServlet {
-    protected static final ObjectMapper objectMapper;
     protected static final PlayerNameValidator playerNameValidator;
+    protected static final MatchDAO matchDAO;
     protected static final NewMatchService newMatchService;
     protected static final OngoingMatchesService ongoingMatchesService;
     protected static final MatchResultService matchResultService;
-    protected static final MatchDAO matchDAO;
 
     static {
-        objectMapper = new ObjectMapper();
         playerNameValidator = new PlayerNameValidator();
+        matchDAO = new MatchDAO();
         newMatchService = new NewMatchService(new PlayerDAO());
         ongoingMatchesService = new OngoingMatchesService(new ConcurrentHashMap<>());
         matchResultService = new MatchResultService();
-        matchDAO = new MatchDAO();
 
         insertTestData();
     }
