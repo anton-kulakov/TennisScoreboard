@@ -9,8 +9,8 @@
 <body>
 <div class="form-container">
     <h1>Welcome to the Tennis Scoreboard</h1>
-    <button class="button" onclick="location.href='http://localhost:8080/new-match'">New match</button>
-    <button class="button" onclick="location.href='http://localhost:8080/matches?page=&filter_by_player_name='">Completed matches</button>
+    <button class="button" onclick="location.href='<%= request.getContextPath() %>/new-match'">New match</button>
+    <button class="button" onclick="location.href='<%= request.getContextPath() %>/matches?page=&filter_by_player_name='">Completed matches</button>
 </div>
 </body>
 </html>
