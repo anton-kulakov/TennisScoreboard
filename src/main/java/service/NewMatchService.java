@@ -25,6 +25,7 @@ public class NewMatchService {
                 .matchScore(new MatchScore())
                 .build();
     }
+
     private Player getPlayer(String playerName) throws HibernateException {
         Optional<Player> optionalPlayer = playerDAO.getByName(playerName);
         return optionalPlayer.orElseGet(() -> new Player(playerName));

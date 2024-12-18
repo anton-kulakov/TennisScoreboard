@@ -22,12 +22,12 @@ public class NewMatchController extends AbstractMainController {
         String firstPlayerName = req.getParameter("player1");
         String secondPlayerName = req.getParameter("player2");
 
-        if(!playerNameValidator.isNameConsistsOfLetters(firstPlayerName)) {
+        if (!playerNameValidator.isNameConsistsOfLetters(firstPlayerName)) {
             throw new AppException(SC_BAD_REQUEST,
                     "You have entered a name: %s. The name should consist of letters.".formatted(firstPlayerName));
         }
 
-        if(!playerNameValidator.isNameConsistsOfLetters(secondPlayerName)) {
+        if (!playerNameValidator.isNameConsistsOfLetters(secondPlayerName)) {
             throw new AppException(SC_BAD_REQUEST,
                     "You have entered a name: %s. The name should consist of letters.".formatted(secondPlayerName));
         }

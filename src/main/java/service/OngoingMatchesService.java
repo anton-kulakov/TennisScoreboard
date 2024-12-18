@@ -9,9 +9,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class OngoingMatchesService {
     private final Map<String, Match> ongoingMatches;
+
     public OngoingMatchesService(ConcurrentHashMap<String, Match> ongoingMatches) {
         this.ongoingMatches = ongoingMatches;
     }
+
     public String add(Match match) {
         String uuid = UUID.randomUUID().toString();
         ongoingMatches.put(uuid, match);

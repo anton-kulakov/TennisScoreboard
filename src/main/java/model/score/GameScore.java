@@ -6,9 +6,11 @@ public class GameScore extends BaseScore {
     private final CurrentPoints currentPoints;
     private static final int WINNING_POINT = 6;
     private int winningPointDifference = 2;
+
     public GameScore(CurrentPoints currentPoints) {
         this.currentPoints = currentPoints;
     }
+
     public void resetWinningPointDifference() {
         winningPointDifference = 2;
     }

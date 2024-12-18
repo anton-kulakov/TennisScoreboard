@@ -2,6 +2,7 @@ package util;
 
 public class PlayerNameValidator {
     private final int MAX_NAME_LENGTH = 30;
+
     public boolean isEqualsNames(String firstPlayerName, String secondPlayerName) {
         return firstPlayerName.replaceAll("[ _]+", " ").trim()
                 .equalsIgnoreCase(secondPlayerName.replaceAll("[ _]+", " ").trim());

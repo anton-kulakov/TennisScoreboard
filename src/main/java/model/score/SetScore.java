@@ -5,10 +5,12 @@ public class SetScore extends BaseScore {
     private final MatchResult matchResult;
     private int setCounter = 1;
     private static final int WINNING_POINT = 2;
+
     public SetScore(GameScore gameScore, MatchResult matchResult) {
         this.gameScore = gameScore;
         this.matchResult = matchResult;
     }
+
     void update(EnumPlayer pointWinner) {
         gameScore.update(pointWinner);
 

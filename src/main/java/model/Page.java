@@ -11,6 +11,7 @@ public class Page {
     private final int totalPagesNumber;
     private final int pageNumber;
     private final String playerName;
+
     public Page(List<Match> matches, int pageNumber, int totalPagesNumber) {
         this.matches = matches;
         this.pageNumber = pageNumber;

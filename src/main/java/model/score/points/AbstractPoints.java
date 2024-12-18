@@ -5,6 +5,7 @@ import model.score.EnumPlayer;
 
 public abstract class AbstractPoints extends BaseScore {
     protected abstract int getWinningPoint();
+
     protected abstract int getWinningPointDifference();
 
     void update(EnumPlayer pointWinner) {

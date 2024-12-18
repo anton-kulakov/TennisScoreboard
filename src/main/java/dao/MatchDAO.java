@@ -14,6 +14,7 @@ public class MatchDAO {
     private final static String GET_BY_NAME_HQL = "FROM Match m WHERE LOWER(m.player1.name) LIKE LOWER(:name) OR LOWER(m.player2.name) LIKE LOWER(:name)";
     private final static String COUNT_ALL_HQL = "SELECT count (m.id) FROM Match m";
     private final static String COUNT_BY_NAME_HQL = "SELECT count (m.id) FROM Match m WHERE LOWER(m.player1.name) LIKE LOWER(:name) OR LOWER(m.player2.name) LIKE LOWER(:name)";
+
     public Page getByName(int pageNumber, int entitiesLimit, String name) {
         int firstResult = (pageNumber == 1) ? 0 : (pageNumber - 1) * entitiesLimit;
         String searchPattern = getPatternForPartialMatching(name);

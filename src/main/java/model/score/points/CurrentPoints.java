@@ -20,6 +20,7 @@ public class CurrentPoints {
     private EnumPlayer winner;
     private static final int DEUCE_ONE_POINT = 1;
     private static final int DEUCE_SCORE_POINT = 3;
+
     public CurrentPoints(RegularRulePoints regularRulePoints, DeuceRulePoints deuceRulePoints, TiebreakRulePoints tiebreakRulePoints) {
         this.regularRulePoints = regularRulePoints;
         this.deuceRulePoints = deuceRulePoints;
@@ -70,9 +71,11 @@ public class CurrentPoints {
             isDeuce = true;
         }
     }
+
     public boolean getIsTiebreak() {
         return isTiebreak;
     }
+
     public boolean getIsDeuce() {
         return isDeuce;
     }
@@ -114,6 +117,7 @@ public class CurrentPoints {
             regularRulePoints.reset();
         }
     }
+
     private boolean isDeuceScorePointEqualPlayersPoints() {
         return DEUCE_SCORE_POINT == firstPlayerPoints && DEUCE_SCORE_POINT == secondPlayerPoints;
     }
