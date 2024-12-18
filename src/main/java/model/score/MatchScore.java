@@ -3,8 +3,8 @@ package model.score;
 import lombok.Getter;
 import model.score.points.CurrentPoints;
 import model.score.points.DeuceRulePoints;
-import model.score.points.TiebreakRulePoints;
 import model.score.points.RegularRulePoints;
+import model.score.points.TiebreakRulePoints;
 
 @Getter
 public class MatchScore {

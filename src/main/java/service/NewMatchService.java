@@ -2,8 +2,8 @@ package service;
 
 import dao.PlayerDAO;
 import entity.Match;
-import model.score.MatchScore;
 import entity.Player;
+import model.score.MatchScore;
 import org.hibernate.HibernateException;
 
 import java.util.Optional;
