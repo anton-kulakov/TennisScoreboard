@@ -13,6 +13,7 @@ import org.hibernate.HibernateException;
 import service.MatchResultService;
 import service.NewMatchService;
 import service.OngoingMatchesService;
+import service.PaginationService;
 import util.PlayerNameValidator;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public abstract class AbstractMainController extends HttpServlet {
     protected static final NewMatchService newMatchService;
     protected static final OngoingMatchesService ongoingMatchesService;
     protected static final MatchResultService matchResultService;
+    protected static final PaginationService paginationService;
 
     static {
         playerNameValidator = new PlayerNameValidator();
@@ -33,6 +35,7 @@ public abstract class AbstractMainController extends HttpServlet {
         newMatchService = new NewMatchService(new PlayerDAO());
         ongoingMatchesService = new OngoingMatchesService(new ConcurrentHashMap<>());
         matchResultService = new MatchResultService();
+        paginationService = new PaginationService();
 
         insertTestData();
     }
