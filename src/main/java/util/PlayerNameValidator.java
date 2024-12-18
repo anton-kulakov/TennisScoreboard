@@ -8,7 +8,7 @@ public class PlayerNameValidator {
     }
 
     public boolean isNameConsistsOfLetters(String name) {
-        return !name.isBlank() && name.replaceAll("\\s+", "").matches("^[a-zA-Zа-яА-ЯёЁ]+$");
+        return !name.isBlank() && name.replaceAll("\\s+", "").matches("^[a-zA-Zа-яА-ЯёЁ'-]+$");
     }
 
     public boolean isNameLongerThanMaxLength(String name) {
