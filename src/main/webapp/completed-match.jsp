@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tennis Match Result</title>
-    <link rel="stylesheet" href="../css/completed-match.css">
+    <link rel="stylesheet" href="css/completed-match.css">
 </head>
 <body>
 
