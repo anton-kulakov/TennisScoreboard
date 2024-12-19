@@ -70,8 +70,17 @@ public class MatchDAO {
     public void merge(Match match) {
         try (Session session = HibernateUtil.buildSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.merge(match);
-            transaction.commit();
+
+            try {
+                session.merge(match);
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+
+                throw e;
+            }
         }
     }
 
