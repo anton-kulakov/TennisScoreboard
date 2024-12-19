@@ -7,6 +7,7 @@ This project is based on the technical specification provided in the Java Backen
 - [Functionality](#functionality)
 - [Score Calculation](#score-calculation)
 - [Description of the application pages](#description-of-the-application-pages)
+- [How to run](#how-to-run)
 
 ## Built with
 
