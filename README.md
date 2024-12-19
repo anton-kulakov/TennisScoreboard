@@ -58,24 +58,24 @@ Open your terminal or Git Bash and run the following command:
   
 2. Go to the configurations menu
 
-![1. Go to the configurations menu.png](..%2F..%2FDownloads%2F1.%20Go%20to%20the%20configurations%20menu.png)
+![1  Go to the configurations menu](https://github.com/user-attachments/assets/e59d28ef-c385-4551-b63d-b897c69839f4)
 
 3. Select "Edit configurations"
 
-![2. Select Edit configurations.png](..%2F..%2FDownloads%2F2.%20Select%20Edit%20configurations.png)
+![2  Select Edit configurations](https://github.com/user-attachments/assets/49cf4038-bf76-465c-a1dd-5c0fcb97a29b)
 
 4. Click the plus sign
 
-![3. Click the plus sign.png](..%2F..%2FDownloads%2F3.%20Click%20the%20plus%20sign.png)
+![3  Click the plus sign](https://github.com/user-attachments/assets/c668675d-2168-4be2-ba29-932bf7c30178)
 
 5. Select Tomcat -> Local
 6. Select Tomcat as a Application server
 
-![4. Select Tomcat as a Application server.png](..%2F..%2FDownloads%2F4.%20Select%20Tomcat%20as%20a%20Application%20server.png)
+![4  Select Tomcat as a Application server](https://github.com/user-attachments/assets/68211fa6-a9e1-4e43-bc15-99b77678182e)
 
 7. Click "Fix"
 
-![5. Click Fix.png](..%2F..%2FDownloads%2F5.%20Click%20Fix.png)
+![5  Click Fix](https://github.com/user-attachments/assets/3886edbe-a2af-477e-96ab-b0061b86d248)
 
 8. Select "TennisScoreboard:war exploded"
 9. Remove "TennisScoreboard_war_exploded" from the application context
