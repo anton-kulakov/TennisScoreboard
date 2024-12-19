@@ -18,6 +18,7 @@ This project is based on the technical specification provided in the Java Backen
 - Lombok
 - HTML/CSS
 - JSP
+- JavaScript
 
 ## Functionality
 
@@ -72,7 +73,7 @@ Open your terminal or Git Bash and run the following command:
 ![3  Click the plus sign](https://github.com/user-attachments/assets/c668675d-2168-4be2-ba29-932bf7c30178)
 
 5. Select Tomcat -> Local
-6. Select Tomcat as a Application server
+6. Select Tomcat as an Application server
 
 ![4  Select Tomcat as a Application server](https://github.com/user-attachments/assets/68211fa6-a9e1-4e43-bc15-99b77678182e)
 
