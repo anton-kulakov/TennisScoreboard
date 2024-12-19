@@ -16,6 +16,8 @@ This project is based on the technical specification provided in the Java Backen
 - Apache Maven
 - Apache Tomcat
 - Lombok
+- HTML/CSS
+- JSP
 
 ## Functionality
 
